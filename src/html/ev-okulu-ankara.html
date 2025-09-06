@@ -1,0 +1,896 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ev Okulu Ankara - Neşeli Kaşifler</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='25' fill='%23FFD700'/%3E%3Cpath d='M50 10 L50 20 M50 80 L50 90 M10 50 L20 50 M80 50 L90 50 M21.7 21.7 L28.3 28.3 M71.7 71.7 L78.3 78.3 M21.7 78.3 L28.3 71.7 M71.7 28.3 L78.3 21.7' stroke='%23FFD700' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-yellow: #FFD700;
+            --secondary-red: #FF6B35;
+            --blue-accent: #4ECDC4;
+            --green-accent: #45B7D1;
+            --purple-accent: #9B59B6;
+            --orange-accent: #FFA726;
+            --white: #FFFEF7;
+            --dark-text: #333333;
+            --light-gray: #F8F9FA;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #FFE066 0%, #FF6B35 50%, #4ECDC4 100%);
+            min-height: 100vh;
+            color: var(--dark-text);
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 254, 247, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            margin-left: 10px;
+        }
+
+        .logo-main {
+            font-size: 1.4rem;
+            color: var(--secondary-red);
+            line-height: 1.1;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+        }
+
+        .logo-sub {
+            font-size: 1.1rem;
+            color: #663399;
+            line-height: 1.1;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--primary-yellow);
+            margin-right: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: sunRotate 8s linear infinite;
+        }
+
+        @keyframes sunRotate {
+            0% { transform: rotate(0deg); }
+            8% { transform: rotate(360deg); }
+            92% { transform: rotate(360deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: var(--primary-yellow);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .register-btn {
+            background: var(--secondary-red);
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .register-btn:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(45deg, var(--green-accent), var(--blue-accent));
+            color: white;
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--white);
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--purple-accent);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* About Section */
+        .about-content {
+            text-align: justify;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: var(--dark-text);
+        }
+
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, var(--blue-accent), #E3F2FD);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border-left: 5px solid var(--secondary-red);
+        }
+
+        .highlight-box h3 {
+            color: var(--secondary-red);
+            margin-bottom: 1rem;
+            font-size: 1.4rem;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .feature-item {
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border-top: 4px solid var(--primary-yellow);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary-red);
+        }
+
+        .feature-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark-text);
+        }
+
+        /* Workshop Section */
+        .workshops-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .workshop-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            border-left: 5px solid;
+        }
+
+        .workshop-card:nth-child(1) { border-left-color: var(--blue-accent); }
+        .workshop-card:nth-child(2) { border-left-color: var(--green-accent); }
+        .workshop-card:nth-child(3) { border-left-color: var(--purple-accent); }
+        .workshop-card:nth-child(4) { border-left-color: var(--orange-accent); }
+
+        .workshop-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .workshop-header {
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .workshop-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .workshop-card:nth-child(1) .workshop-icon { color: var(--blue-accent); }
+        .workshop-card:nth-child(2) .workshop-icon { color: var(--green-accent); }
+        .workshop-card:nth-child(3) .workshop-icon { color: var(--purple-accent); }
+        .workshop-card:nth-child(4) .workshop-icon { color: var(--orange-accent); }
+
+        .workshop-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--dark-text);
+            margin-bottom: 1rem;
+        }
+
+        .workshop-age {
+            background: var(--primary-yellow);
+            color: var(--dark-text);
+            padding: 0.3rem 1rem;
+            border-radius: 15px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        .workshop-description {
+            padding: 0 2rem;
+            color: var(--dark-text);
+            line-height: 1.6;
+            margin-bottom: 1.5rem;
+        }
+
+        .workshop-details {
+            padding: 0 2rem 2rem;
+        }
+
+        .workshop-details ul {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .workshop-details li {
+            padding: 0.3rem 0;
+            color: #666;
+        }
+
+        .workshop-details li i {
+            width: 20px;
+            color: var(--secondary-red);
+            margin-right: 0.5rem;
+        }
+
+        .register-workshop-btn {
+            background: var(--secondary-red);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .register-workshop-btn:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Registration Form Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 100%;
+            position: relative;
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary-red);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--dark-text);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 15px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-yellow);
+            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+
+        .submit-btn {
+            background: var(--primary-yellow);
+            color: var(--dark-text);
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            background: #e6c200;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(45deg, var(--purple-accent), #2C3E50);
+            color: white;
+            text-align: center;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Nunito', sans-serif;
+            color: var(--primary-yellow);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: white;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-yellow);
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-yellow);
+            color: var(--dark-text);
+            border-radius: 50%;
+            line-height: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-3px);
+            background: var(--secondary-red);
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: calc(100% - -15px);
+                left: 0;
+                right: 0;
+                background: rgba(255, 254, 247, 0.98);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                border-radius: 0 0 15px 15px;
+                z-index: 1001;
+            }
+            
+            .nav-menu li a {
+                padding: 1rem;
+                text-align: left;
+                border-radius: 10px;
+                margin: 0.5rem 0;
+            }
+            
+            .nav-menu.mobile-active {
+                display: flex !important;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .navbar {
+                position: relative;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .register-btn {
+                margin-left: auto;
+                margin-right: 1rem;
+            }
+
+            .page-title { 
+                font-size: 2.5rem; 
+            }
+            
+            .content-section { 
+                padding: 2rem; 
+                margin: 1.5rem 0; 
+            }
+            
+            .features-grid,
+            .workshops-grid { 
+                grid-template-columns: 1fr; 
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-sun"></i>
+                    <div class="logo-text">
+                        <div class="logo-main">NEŞELİ KAŞİFLER</div>
+                        <div class="logo-sub">ANAOKULU</div>
+                    </div>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="programlar.html">Eğitim Programlarımız</a></li>
+                    <li><a href="galeri.html">Foto Galeri</a></li>
+                </ul>
+                <a href="kayit.html" class="register-btn">Hemen Kayıt Ol</a>
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">EV OKULU ANKARA</h1>
+            <p class="page-subtitle">Evde eğitim destekleyen topluluk ve atölyeler</p>
+        </div>
+    </section>
+
+    <!-- About Ev Okulu Ankara -->
+    <section class="container">
+        <div class="content-section">
+            <h2 class="section-title">Ev Okulu Ankara Nedir?</h2>
+            <div class="about-content">
+                <p>Ev Okulu Ankara, çocuklarını evde eğitme konusunda aileleri destekleyen, rehberlik eden ve bir araya getiren bir topluluktur. Geleneksel okul sisteminin dışında, çocuklarının eğitimini kendileri üstlenmek isteyen ailelere kaynak, deneyim ve sosyalleşme imkanları sunuyoruz.</p>
+                
+                <div class="highlight-box">
+                    <h3>Misyonumuz</h3>
+                    <p>Her çocuğun kendine özgü öğrenme tarzına ve hızına saygı duyarak, ailelerin evde eğitim yolculuğunda yanlarında olmak ve bu süreçte ihtiyaç duydukları tüm desteği sağlamaktır.</p>
+                </div>
+                
+                <p>Ev okulu eğitimi, çocukların doğal meraklarını koruyarak, kendi ilgi alanlarını keşfetmelerini ve derinlemesine öğrenmelerini sağlar. Ailemizde yer alan çocuklar, bireysel gelişimlerine odaklanırken aynı zamanda toplumsal değerleri de öğrenirler.</p>
+                
+                <p>Ankara'da ev okulu yapan aileleri bir araya getirerek güçlü bir destek ağı oluşturuyoruz. Deneyimli ailelerden yeni başlayan ailelere bilgi aktarımı, kaynak paylaşımı ve moral desteği sağlıyoruz.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="container">
+        <div class="content-section">
+            <h2 class="section-title">Neler Sunuyoruz?</h2>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <h3 class="feature-title">Topluluk Desteği</h3>
+                    <p>Deneyimli ev okulu ailelerinden rehberlik ve moral desteği</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h3 class="feature-title">Kaynak Paylaşımı</h3>
+                    <p>Eğitim materyalleri, kitaplar ve öğretim kaynakları</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-child"></i>
+                    </div>
+                    <h3 class="feature-title">Sosyalleşme</h3>
+                    <p>Çocukların akranlarıyla buluşma ve sosyal gelişim imkanları</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">
+                        <i class="fas fa-graduation-cap"></i>
+                    </div>
+                    <h3 class="feature-title">Uzman Rehberliği</h3>
+                    <p>Eğitim uzmanları ve deneyimli öğretmenlerden destek</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Workshops -->
+    <section class="container">
+        <div class="content-section">
+            <h2 class="section-title">Atölyelerimiz</h2>
+            <div class="workshops-grid">
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div class="workshop-icon">
+                            <i class="fas fa-palette"></i>
+                        </div>
+                        <h3 class="workshop-title">Sanat ve Yaratıcılık Atölyesi</h3>
+                        <div class="workshop-age">5-12 Yaş</div>
+                    </div>
+                    <div class="workshop-description">
+                        <p>Çocukların yaratıcı potansiyellerini keşfetmeleri için tasarlanmış sanat atölyesi. Farklı malzemeler ve tekniklerle sanat eserleri üretirler.</p>
+                    </div>
+                    <div class="workshop-details">
+                        <ul>
+                            <li><i class="fas fa-calendar"></i> Her Salı 10:00-12:00</li>
+                            <li><i class="fas fa-clock"></i> 2 saat süre</li>
+                            <li><i class="fas fa-money-bill"></i> 200 TL/ay</li>
+                            <li><i class="fas fa-user"></i> Max 8 çocuk</li>
+                        </ul>
+                        <button class="register-workshop-btn" data-workshop="sanat">Atölyeye Kayıt Ol</button>
+                    </div>
+                </div>
+
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div class="workshop-icon">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="workshop-title">Doğa ve Bilim Atölyesi</h3>
+                        <div class="workshop-age">6-14 Yaş</div>
+                    </div>
+                    <div class="workshop-description">
+                        <p>Doğa gezileri, deneyler ve gözlemlerle bilimsel düşünce geliştirme. Çocuklar doğayı keşfederken öğrenirler.</p>
+                    </div>
+                    <div class="workshop-details">
+                        <ul>
+                            <li><i class="fas fa-calendar"></i> Her Perşembe 14:00-16:00</li>
+                            <li><i class="fas fa-clock"></i> 2 saat süre</li>
+                            <li><i class="fas fa-money-bill"></i> 250 TL/ay</li>
+                            <li><i class="fas fa-user"></i> Max 6 çocuk</li>
+                        </ul>
+                        <button class="register-workshop-btn" data-workshop="doga">Atölyeye Kayıt Ol</button>
+                    </div>
+                </div>
+
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div class="workshop-icon">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="workshop-title">Hikaye ve Drama Atölyesi</h3>
+                        <div class="workshop-age">4-10 Yaş</div>
+                    </div>
+                    <div class="workshop-description">
+                        <p>Hikaye anlatma, drama ve yaratıcı yazma etkinlikleri. Çocukların dil gelişimi ve özgüven kazanmasını destekler.</p>
+                    </div>
+                    <div class="workshop-details">
+                        <ul>
+                            <li><i class="fas fa-calendar"></i> Her Cuma 10:00-11:30</li>
+                            <li><i class="fas fa-clock"></i> 1.5 saat süre</li>
+                            <li><i class="fas fa-money-bill"></i> 180 TL/ay</li>
+                            <li><i class="fas fa-user"></i> Max 10 çocuk</li>
+                        </ul>
+                        <button class="register-workshop-btn" data-workshop="hikaye">Atölyeye Kayıt Ol</button>
+                    </div>
+                </div>
+
+                <div class="workshop-card">
+                    <div class="workshop-header">
+                        <div class="workshop-icon">
+                            <i class="fas fa-gamepad"></i>
+                        </div>
+                        <h3 class="workshop-title">Matematik ve Oyun Atölyesi</h3>
+                        <div class="workshop-age">7-13 Yaş</div>
+                    </div>
+                    <div class="workshop-description">
+                        <p>Oyunlar ve pratik uygulamalarla matematik öğrenme. Çocuklar matematiği eğlenceli bulurken mantıklı düşünme becerileri gelişir.</p>
+                    </div>
+                    <div class="workshop-details">
+                        <ul>
+                            <li><i class="fas fa-calendar"></i> Her Çarşamba 15:00-16:30</li>
+                            <li><i class="fas fa-clock"></i> 1.5 saat süre</li>
+                            <li><i class="fas fa-money-bill"></i> 220 TL/ay</li>
+                            <li><i class="fas fa-user"></i> Max 8 çocuk</li>
+                        </ul>
+                        <button class="register-workshop-btn" data-workshop="matematik">Atölyeye Kayıt Ol</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Modal -->
+    <div class="modal" id="registrationModal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+            <h2 style="color: var(--purple-accent); margin-bottom: 1.5rem;">Atölye Kayıt Formu</h2>
+            <form id="workshopForm">
+                <div class="form-group">
+                    <label for="workshopName">Seçilen Atölye:</label>
+                    <input type="text" id="workshopName" name="workshopName" readonly>
+                </div>
+                
+                <div class="form-group">
+                    <label for="parentName">Veli Adı Soyadı:</label>
+                    <input type="text" id="parentName" name="parentName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="childName">Çocuk Adı Soyadı:</label>
+                    <input type="text" id="childName" name="childName" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="childAge">Çocuk Yaşı:</label>
+                    <select id="childAge" name="childAge" required>
+                        <option value="">Seçiniz</option>
+                        <option value="4">4 yaş</option>
+                        <option value="5">5 yaş</option>
+                        <option value="6">6 yaş</option>
+                        <option value="7">7 yaş</option>
+                        <option value="8">8 yaş</option>
+                        <option value="9">9 yaş</option>
+                        <option value="10">10 yaş</option>
+                        <option value="11">11 yaş</option>
+                        <option value="12">12 yaş</option>
+                        <option value="13">13 yaş</option>
+                        <option value="14">14 yaş</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Telefon:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">E-posta:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="message">Ek Notlar (İsteğe bağlı):</label>
+                    <textarea id="message" name="message" rows="4" placeholder="Çocuğunuzla ilgili özel durumlar, beklentileriniz vb."></textarea>
+                </div>
+                
+                <button type="submit" class="submit-btn">Kayıt Başvurusunu Gönder</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>İletişim</h3>
+                    <p><i class="fas fa-phone"></i> +90 551 497 53 13</p>
+                    <p><i class="fas fa-at"></i> info<i class="fas fa-at" style="margin: 0 2px;"></i>neselikasifler.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kuzey Yıldızı Mah. 4081. Cad. 16/C Yenimahalle Ankara</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Ev Okulu Ankara</h3>
+                    <p>Evde eğitim topluluğu</p>
+                    <p>Uzman rehberliği ve atölyeler</p>
+                    <p>Aileleri destekliyoruz</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Bizi Takip Edin</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/neselikasifler_"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Neşeli Kaşifler Anaokulu. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('mobile-active');
+        });
+
+        // Workshop registration
+        const workshopNames = {
+            'sanat': 'Sanat ve Yaratıcılık Atölyesi',
+            'doga': 'Doğa ve Bilim Atölyesi', 
+            'hikaye': 'Hikaye ve Drama Atölyesi',
+            'matematik': 'Matematik ve Oyun Atölyesi'
+        };
+
+        document.querySelectorAll('.register-workshop-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const workshop = this.getAttribute('data-workshop');
+                document.getElementById('workshopName').value = workshopNames[workshop];
+                document.getElementById('registrationModal').classList.add('active');
+            });
+        });
+
+        function closeModal() {
+            document.getElementById('registrationModal').classList.remove('active');
+        }
+
+        // Close modal on backdrop click
+        document.getElementById('registrationModal').addEventListener('click', (e) => {
+            if (e.target.id === 'registrationModal') {
+                closeModal();
+            }
+        });
+
+        // Form submission
+        document.getElementById('workshopForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Kayıt başvurunuz alınmıştır. En kısa sürede sizinle iletişime geçeceğiz.');
+            closeModal();
+            this.reset();
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hemen Kayıt Ol - Neşeli Kaşifler Anaokulu</title>
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='25' fill='%23FFD700'/%3E%3Cpath d='M50 10 L50 20 M50 80 L50 90 M10 50 L20 50 M80 50 L90 50 M21.7 21.7 L28.3 28.3 M71.7 71.7 L78.3 78.3 M21.7 78.3 L28.3 71.7 M71.7 28.3 L78.3 21.7' stroke='%23FFD700' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-yellow: #FFD700;
+            --secondary-red: #FF6B35;
+            --blue-accent: #4ECDC4;
+            --green-accent: #45B7D1;
+            --purple-accent: #9B59B6;
+            --orange-accent: #FFA726;
+            --white: #FFFEF7;
+            --dark-text: #333333;
+            --light-gray: #F8F9FA;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            background: linear-gradient(135deg, #FFE066 0%, #FF6B35 50%, #4ECDC4 100%);
+            min-height: 100vh;
+            color: var(--dark-text);
+        }
+
+        /* Header */
+        .header {
+            background: rgba(255, 254, 247, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+            text-decoration: none;
+        }
+
+        .logo-text {
+            margin-left: 10px;
+        }
+
+        .logo-main {
+            font-size: 1.4rem;
+            color: var(--secondary-red);
+            line-height: 1.1;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+        }
+
+        .logo-sub {
+            font-size: 1.1rem;
+            color: #663399;
+            line-height: 1.1;
+            font-family: 'Nunito', sans-serif;
+            font-weight: 800;
+        }
+
+        .logo i {
+            font-size: 2.5rem;
+            color: var(--primary-yellow);
+            margin-right: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: sunRotate 8s linear infinite;
+        }
+
+        @keyframes sunRotate {
+            0% { transform: rotate(0deg); }
+            8% { transform: rotate(360deg); }
+            92% { transform: rotate(360deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-menu li a {
+            text-decoration: none;
+            color: var(--dark-text);
+            font-weight: 600;
+            padding: 10px 15px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: var(--primary-yellow);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .register-btn {
+            background: var(--secondary-red);
+            color: var(--white);
+            text-decoration: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+        }
+
+        .register-btn:hover {
+            background: #e55a2b;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 107, 53, 0.4);
+        }
+
+        /* Page Header */
+        .page-header {
+            background: linear-gradient(45deg, var(--primary-yellow), var(--orange-accent));
+            color: var(--dark-text);
+            padding: 4rem 0;
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .page-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.2rem;
+            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        /* Steps Section */
+        .steps-section {
+            background: var(--white);
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--purple-accent);
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: 2rem;
+            background: var(--light-gray);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .step-item:hover {
+            background: var(--primary-yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .step-number {
+            background: var(--secondary-red);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: 800;
+            margin: 0 auto 1rem;
+        }
+
+        .step-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--purple-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Registration Form */
+        .registration-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin: 3rem 0;
+        }
+
+        .form-section {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--purple-accent);
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 15px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-yellow);
+            box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin: 1rem 0;
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: auto;
+            margin: 0;
+        }
+
+        .submit-btn {
+            background: linear-gradient(45deg, var(--secondary-red), var(--orange-accent));
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+        }
+
+        /* Age Groups Section */
+        .age-groups {
+            background: var(--white);
+            padding: 3rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .age-group-item {
+            display: flex;
+            align-items: center;
+            padding: 1.5rem;
+            margin: 1rem 0;
+            background: var(--light-gray);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .age-group-item:hover {
+            background: var(--primary-yellow);
+            transform: translateX(10px);
+        }
+
+        .age-group-item input[type="radio"] {
+            margin-right: 1rem;
+            width: 20px;
+            height: 20px;
+        }
+
+        .age-icon {
+            font-size: 2rem;
+            margin-right: 1rem;
+            width: 60px;
+            text-align: center;
+        }
+
+        .age-info h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--purple-accent);
+            margin-bottom: 0.5rem;
+        }
+
+        .age-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Info Cards */
+        .info-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .info-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .info-card i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .info-card:nth-child(1) i { color: var(--blue-accent); }
+        .info-card:nth-child(2) i { color: var(--green-accent); }
+        .info-card:nth-child(3) i { color: var(--purple-accent); }
+
+        .info-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--purple-accent);
+            margin-bottom: 1rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(45deg, var(--purple-accent), #2C3E50);
+            color: white;
+            text-align: center;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
+            border-radius: 30px 30px 0 0;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            font-family: 'Nunito', sans-serif;
+            color: var(--primary-yellow);
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .footer-section p, .footer-section a {
+            color: white;
+            text-decoration: none;
+            line-height: 1.6;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-yellow);
+        }
+
+        .footer-links a {
+            display: block;
+            margin: 0.5rem 0;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: var(--primary-yellow);
+            color: var(--dark-text);
+            border-radius: 50%;
+            line-height: 40px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            transform: translateY(-3px);
+            background: var(--secondary-red);
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.2);
+            padding-top: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Mobile */
+        .mobile-menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: calc(100% - -15px);
+                left: 0;
+                right: 0;
+                background: rgba(255, 254, 247, 0.98);
+                flex-direction: column;
+                padding: 1.5rem;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                border-radius: 0 0 15px 15px;
+                gap: 0.5rem;
+            }
+            
+            .nav-menu li a {
+                padding: 1.2rem 1.5rem;
+                text-align: left;
+                border-radius: 10px;
+                margin: 0.5rem 0;
+            }
+            
+            .nav-menu.mobile-active {
+                display: flex !important;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+            }
+            
+            .navbar {
+                position: relative;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .register-btn {
+                margin-left: auto;
+                margin-right: 1rem;
+            }
+
+            .page-title { font-size: 2.5rem; }
+            .registration-section { grid-template-columns: 1fr; gap: 2rem; }
+            .form-section, .age-groups, .steps-section { padding: 2rem; margin: 1.5rem 0; }
+            .form-row { grid-template-columns: 1fr; }
+            .steps-grid { grid-template-columns: 1fr; }
+            .info-cards { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">
+                    <i class="fas fa-sun"></i>
+                    <div class="logo-text">
+                        <div class="logo-main">NEŞELİ KAŞİFLER</div>
+                        <div class="logo-sub">ANAOKULU</div>
+                    </div>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Ana Sayfa</a></li>
+                    <li><a href="hakkimizda.html">Hakkımızda</a></li>
+                    <li><a href="programlar.html">Eğitim Programlarımız</a></li>
+                    <li><a href="galeri.html">Foto Galeri</a></li>
+                </ul>
+                <a href="kayit.html" class="register-btn active">Hemen Kayıt Ol</a>
+                <button class="mobile-menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header">
+        <div class="container">
+            <h1 class="page-title">HEMEN KAYIT OL</h1>
+            <p class="page-subtitle">Çocuğunuz için en doğru tercih</p>
+        </div>
+    </section>
+
+    <!-- Steps Section -->
+    <section class="container">
+        <div class="steps-section">
+            <h2 class="section-title">Kayıt Süreci</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-number">1</div>
+                    <h3 class="step-title">Online Başvuru</h3>
+                    <p>Aşağıdaki formu doldurun</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">2</div>
+                    <h3 class="step-title">Belge Teslimi</h3>
+                    <p>Gerekli belgeleri getirin</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">3</div>
+                    <h3 class="step-title">Okul Ziyareti</h3>
+                    <p>Okulumuzı gezin ve tanışın</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-number">4</div>
+                    <h3 class="step-title">Kayıt Tamamla</h3>
+                    <p>Kaydınızı onaylayın</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Form -->
+    <section class="container">
+        <div class="registration-section">
+            <!-- Child Information Form -->
+            <div class="form-section">
+                <h2 class="section-title">Çocuk Bilgileri</h2>
+                <form>
+                    <div class="form-group">
+                        <label for="child-name">Çocuğun Ad Soyad *</label>
+                        <input type="text" id="child-name" name="child-name" required>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="birth-date">Doğum Tarihi *</label>
+                            <input type="date" id="birth-date" name="birth-date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="gender">Cinsiyet *</label>
+                            <select id="gender" name="gender" required>
+                                <option value="">Seçiniz</option>
+                                <option value="erkek">Erkek</option>
+                                <option value="kiz">Kız</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="health-info">Sağlık Durumu / Özel Gereksinimler</label>
+                        <textarea id="health-info" name="health-info" placeholder="Alerjiler, kronik hastalıklar, ilaç kullanımı vb."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emergency-contact">Acil Durum İletişim</label>
+                        <input type="tel" id="emergency-contact" name="emergency-contact" placeholder="Acil durum telefon numarası">
+                    </div>
+                </form>
+            </div>
+
+            <!-- Parent Information & Age Group Selection -->
+            <div class="form-section">
+                <h2 class="section-title">Veli Bilgileri</h2>
+                <form>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="parent-name">Anne/Baba Ad Soyad *</label>
+                            <input type="text" id="parent-name" name="parent-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="parent-phone">Telefon *</label>
+                            <input type="tel" id="parent-phone" name="parent-phone" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="parent-email">E-posta *</label>
+                        <input type="email" id="parent-email" name="parent-email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Adres</label>
+                        <textarea id="address" name="address" placeholder="Ev adresiniz"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="work-info">Meslek / İş Yeri</label>
+                        <input type="text" id="work-info" name="work-info">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="start-date">Başlama Tarihi</label>
+                        <input type="date" id="start-date" name="start-date">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Age Groups Selection -->
+    <section class="container">
+        <div class="age-groups">
+            <h2 class="section-title">Yaş Grubu Seçimi</h2>
+            
+            <div class="age-group-item">
+                <input type="radio" name="age-group" value="minik" id="minik">
+                <div class="age-icon">👶</div>
+                <div class="age-info">
+                    <h4>Minik Kaşifler (2-3 Yaş)</h4>
+                    <p>Temel beceriler, sosyal uyum ve oyun odaklı etkinlikler</p>
+                </div>
+            </div>
+
+            <div class="age-group-item">
+                <input type="radio" name="age-group" value="kucuk" id="kucuk">
+                <div class="age-icon">🧒</div>
+                <div class="age-info">
+                    <h4>Küçük Kaşifler (3-4 Yaş)</h4>
+                    <p>Dil gelişimi, motor beceriler ve yaratıcılık etkinlikleri</p>
+                </div>
+            </div>
+
+            <div class="age-group-item">
+                <input type="radio" name="age-group" value="buyuk" id="buyuk">
+                <div class="age-icon">👦</div>
+                <div class="age-info">
+                    <h4>Büyük Kaşifler (4-6 Yaş)</h4>
+                    <p>Okul öncesi hazırlık, matematik ve okuma yazma temelleri</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Information -->
+    <section class="container">
+        <div class="info-cards">
+            <div class="info-card">
+                <i class="fas fa-file-alt"></i>
+                <h3>Gerekli Belgeler</h3>
+                <p>Nüfus cüzdanı, aşı karnesi, 4 adet vesikalık fotoğraf ve veli kimlik fotokopileri</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Kayıt Tarihleri</h3>
+                <p>Yıl boyunca kayıt kabul edilmektedir. Kontenjan durumu için iletişime geçin</p>
+            </div>
+            <div class="info-card">
+                <i class="fas fa-hand-holding-heart"></i>
+                <h3>Uyum Süreci</h3>
+                <p>Çocuğunuzun okula alışması için özel uyum programı uyguluyoruz</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final Form Section -->
+    <section class="container">
+        <div class="form-section">
+            <div class="form-group">
+                <label for="message">Ek Bilgiler / Sorularınız</label>
+                <textarea id="message" name="message" placeholder="Çocuğunuz hakkında bilmemizi istediğiniz özel durumlar, sorularınız..."></textarea>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">Kişisel verilerin işlenmesi konusunda bilgilendirildim ve onaylıyorum</label>
+            </div>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="marketing" name="marketing">
+                <label for="marketing">Okul etkinlikleri ve güncellemeleri hakkında bilgilendirilmek istiyorum</label>
+            </div>
+
+            <button type="submit" class="submit-btn">
+                <i class="fas fa-paper-plane"></i> Başvuruyu Gönder
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>İletişim</h3>
+                    <p><i class="fas fa-phone"></i> +90 551 497 53 13</p>
+                    <p><i class="fas fa-at"></i> info<i class="fas fa-at" style="margin: 0 2px;"></i>neselikasifler.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kuzey Yıldızı Mah. 4081. Cad. 16/C Yenimahalle Ankara</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Çalışma Saatleri</h3>
+                    <p>Pazartesi - Cuma: 07:30 - 18:00</p>
+                    <p>Cumartesi: 08:00 - 14:00</p>
+                    <p>Pazar: Kapalı</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Sayfalar</h3>
+                    <div class="footer-links">
+                        <a href="iletisim.html">İletişim</a>
+                        <a href="is-basvurusu.html">İş Başvurusu</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Bizi Takip Edin</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://instagram.com/neselikasifler_"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Neşeli Kaşifler Anaokulu. Tüm hakları saklıdır.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('mobile-active');
+        });
+
+        // Age group selection
+        document.querySelectorAll('.age-group-item').forEach(item => {
+            item.addEventListener('click', () => {
+                const radio = item.querySelector('input[type="radio"]');
+                radio.checked = true;
+            });
+        });
+
+        // Form submission
+        document.querySelector('.submit-btn').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('Teşekkürler! Başvurunuz alınmıştır. 24 saat içinde size dönüş yapacağız.');
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

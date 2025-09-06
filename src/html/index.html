@@ -22,7 +22,7 @@
             --green-accent: #45B7D1;
             --purple-accent: #9B59B6;
             --orange-accent: #FFA726;
-            --white: #FFFFFF;
+            --white: #FFFEF7;
             --dark-text: #333333;
             --light-gray: #F8F9FA;
         }
@@ -36,7 +36,7 @@
 
         /* Header */
         .header {
-            background: rgba(255, 255, 255, 0.95);
+            background: rgba(255, 254, 247, 0.95);
             backdrop-filter: blur(10px);
             padding: 1rem 0;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
@@ -84,11 +84,19 @@
             font-weight: 800;
         }
 
-        .logo i {
-            font-size: 2.5rem;
-            color: var(--primary-yellow);
+        .logo img {
+            width: 50px;
+            height: 50px;
             margin-right: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            object-fit: contain;
+            animation: logoWiggle 6s ease-in-out infinite;
+        }
+
+        @keyframes logoWiggle {
+            0%, 70% { transform: rotate(0deg); }
+            75% { transform: rotate(30deg); }
+            85% { transform: rotate(-30deg); }
+            90%, 100% { transform: rotate(0deg); }
         }
 
         .nav-menu {
@@ -113,6 +121,22 @@
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
         }
 
+        /* Instagram Button in Nav */
+        .nav-instagram {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%) !important;
+            color: white !important;
+            border-radius: 20px !important;
+            padding: 8px 15px !important;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-instagram:hover {
+            background: linear-gradient(45deg, #bc1888 0%,#cc2366 25%,#dc2743 50%,#e6683c 75%,#f09433 100%) !important;
+            transform: translateY(-3px) !important;
+            box-shadow: 0 6px 15px rgba(220, 39, 67, 0.4) !important;
+        }
+
         /* Register Button */
         .register-btn {
             background: var(--secondary-red);
@@ -135,45 +159,64 @@
         /* Hero Section */
         .hero {
             position: relative;
-            display: flex;
-            align-items: flex-end;
-            justify-content: center;
-            padding: 3rem 0 2rem 0;
-            background: linear-gradient(rgba(0,0,0,0.1), rgba(0,0,0,0.1)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%2387CEEB" width="1200" height="400"/><circle fill="%23228B22" cx="200" cy="350" r="80"/><circle fill="%23228B22" cx="600" cy="370" r="60"/><circle fill="%23228B22" cx="1000" cy="330" r="100"/></svg>');
+            height: 400px;
+            background: linear-gradient(135deg, #87CEEB 0%, #98FB98 50%, #FFE4B5 100%);
+            overflow: hidden;
+        }
+
+        .hero-slider {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: linear-gradient(rgba(0,0,0,0.2), rgba(0,0,0,0.2)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%2387CEEB" width="1200" height="400"/><circle fill="%23228B22" cx="200" cy="350" r="80"/><circle fill="%23228B22" cx="600" cy="370" r="60"/><circle fill="%23228B22" cx="1000" cy="330" r="100"/><circle fill="%23FFD700" cx="100" cy="80" r="50"/><rect fill="%23FF6B35" x="800" y="60" width="80" height="60" rx="10"/></svg>');
             background-size: cover;
             background-position: center;
-            margin: 0;
-            border-radius: 0;
-            overflow: hidden;
-            height: 300px;
         }
 
         .hero::before {
             content: '📚';
             position: absolute;
-            top: 30px;
-            left: 80px;
-            font-size: 3rem;
+            top: 40px;
+            left: 100px;
+            font-size: 4rem;
             animation: float 3s ease-in-out infinite;
+            z-index: 2;
         }
 
         .hero::after {
             content: '☀️';
             position: absolute;
-            top: 30px;
-            right: 80px;
-            font-size: 3rem;
+            top: 40px;
+            right: 120px;
+            font-size: 4rem;
             animation: float 3s ease-in-out infinite reverse;
+            z-index: 2;
+        }
+
+        /* Welcome Overlay */
+        .welcome-overlay {
+            position: relative;
+            margin-top: -80px;
+            z-index: 10;
+            padding-bottom: 2rem;
+            display: flex;
+            justify-content: center;
         }
 
         .hero-welcome {
             background: rgba(255, 255, 255, 0.95);
             display: inline-block;
-            padding: 1.5rem 3rem;
-            border-radius: 20px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
-            margin-bottom: 1.5rem;
-            max-width: 600px;
+            padding: 2rem 4rem;
+            border-radius: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 700px;
+            z-index: 3;
+            position: relative;
+            backdrop-filter: blur(10px);
         }
 
         .hero-title {
@@ -187,10 +230,19 @@
         }
 
         .hero-subtitle {
-            font-size: 1.1rem;
-            color: var(--dark-text);
+            font-size: 1.8rem;
+            color: var(--secondary-red);
             margin-top: 0.8rem;
-            font-weight: 600;
+            font-weight: 900;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+            animation: pulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.05); }
         }
 
         @keyframes bounce {
@@ -304,6 +356,7 @@
             border-radius: 20px;
             background: var(--light-gray);
             transition: all 0.3s ease;
+            border: 3px solid transparent;
         }
 
         .feature-card:hover {
@@ -312,12 +365,26 @@
             box-shadow: 0 10px 25px rgba(0,0,0,0.1);
         }
 
+        /* Farklı renkli borders */
+        .feature-card:nth-child(1) {
+            border-color: var(--secondary-red);
+        }
+        .feature-card:nth-child(2) {
+            border-color: var(--green-accent);
+        }
+        .feature-card:nth-child(3) {
+            border-color: var(--purple-accent);
+        }
+        .feature-card:nth-child(4) {
+            border-color: var(--orange-accent);
+        }
+
         .feature-card i {
             font-size: 3rem;
             margin-bottom: 1rem;
         }
 
-        .feature-card:nth-child(1) i { color: var(--blue-accent); }
+        .feature-card:nth-child(1) i { color: var(--secondary-red); }
         .feature-card:nth-child(2) i { color: var(--green-accent); }
         .feature-card:nth-child(3) i { color: var(--purple-accent); }
         .feature-card:nth-child(4) i { color: var(--orange-accent); }
@@ -331,11 +398,11 @@
 
         /* Footer */
         .footer {
-            background: rgba(51, 51, 51, 0.9);
-            color: var(--white);
+            background: linear-gradient(45deg, var(--purple-accent), #2C3E50);
+            color: white;
             text-align: center;
-            padding: 3rem 0;
-            margin-top: 3rem;
+            padding: 3rem 0 1rem;
+            margin-top: 4rem;
             border-radius: 30px 30px 0 0;
         }
 
@@ -363,11 +430,28 @@
             color: var(--primary-yellow);
         }
 
+        .footer-links a {
+            display: block;
+            margin: 0.5rem 0;
+        }
+
         .social-icons {
             display: flex;
             justify-content: center;
             gap: 1rem;
-            margin-top: 1rem;
+            margin: 0;
+        }
+
+        .social-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-header h3 {
+            margin: 0 !important;
         }
 
         .social-icons a {
@@ -394,7 +478,157 @@
             font-size: 0.9rem;
         }
 
-        /* Mobile Menu */
+        /* Mobile Contact Icons */
+        .mobile-contact {
+            display: none;
+            gap: 1rem;
+        }
+
+        .mobile-contact a {
+            display: inline-block;
+            width: 45px;
+            height: 45px;
+            background: var(--primary-yellow);
+            color: var(--dark-text);
+            border-radius: 50%;
+            line-height: 45px;
+            text-align: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .mobile-contact a:hover {
+            transform: translateY(-2px);
+            background: var(--secondary-red);
+            color: white;
+        }
+
+        .mobile-contact .phone-icon {
+            background: #25D366;
+            color: white;
+        }
+
+        .mobile-contact .instagram-icon {
+            background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);
+            color: white;
+        }
+
+        /* Badge */
+        .weekend-badge {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(45deg, var(--secondary-red), var(--orange-accent));
+            color: white;
+            padding: 15px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(255, 107, 53, 0.4);
+            z-index: 999;
+            transition: all 0.3s ease;
+            animation: badgePulse 3s ease-in-out infinite;
+        }
+
+        .weekend-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(255, 107, 53, 0.6);
+        }
+
+        /* Enrollment Badge */
+        .enrollment-badge {
+            position: fixed;
+            bottom: 100px;
+            right: 30px;
+            background: linear-gradient(45deg, var(--green-accent), #2ECC71);
+            color: white;
+            padding: 15px 20px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(46, 204, 113, 0.4);
+            z-index: 998;
+            transition: all 0.3s ease;
+            animation: enrollmentBounce 4s ease-in-out infinite;
+        }
+
+        .enrollment-badge:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 12px 30px rgba(46, 204, 113, 0.6);
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes enrollmentBounce {
+            0%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-10px); }
+        }
+
+        /* Image Modal */
+        .image-modal .modal-content {
+            max-width: 600px;
+            text-align: center;
+        }
+
+        .modal-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 500px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .close {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            font-size: 2rem;
+            font-weight: bold;
+            cursor: pointer;
+            color: #aaa;
+        }
+
+        .close:hover {
+            color: var(--secondary-red);
+        }
+
+        .modal h2 {
+            color: var(--secondary-red);
+            margin-bottom: 15px;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        /* Mobile Menu Toggle */
         .mobile-menu-toggle {
             display: none;
             background: none;
@@ -404,13 +638,54 @@
         }
 
         /* Responsive Design */
-        @media (max-width: 768px) {
+                @media (max-width: 768px) {
             .nav-menu {
+                display: none;
+                position: absolute;
+                top: calc(100% - -15px);
+                left: 0;
+                right: 0;
+                background: rgba(255, 254, 247, 0.98);
+                flex-direction: column;
+                padding: 1rem;
+                box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+                border-radius: 0 0 15px 15px;
+                z-index: 1001;
+            }
+            
+            .nav-menu li a {
+                padding: 1rem;
+                text-align: left;
+                border-radius: 10px;
+                margin: 0.5rem 0;
+            }
+            
+            .nav-menu.mobile-active {
+                display: flex !important;
+            }
+            
+            .mobile-menu-toggle {
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+            
+            .navbar {
+                position: relative;
+                justify-content: space-between;
+                align-items: center;
+            }
+            
+            .register-btn {
                 display: none;
             }
 
-            .mobile-menu-toggle {
-                display: block;
+            .mobile-contact {
+                display: flex;
+                margin-left: auto;
+                margin-right: 1rem;
             }
 
             .hero-title {
@@ -490,7 +765,7 @@
         <div class="container">
             <nav class="navbar">
                 <div class="logo">
-                    <i class="fas fa-sun"></i>
+                    <img src="assets/img/logo.png" alt="Neşeli Kaşifler Logo">
                     <div class="logo-text">
                         <div class="logo-main">NEŞELİ KAŞİFLER</div>
                         <div class="logo-sub">ANAOKULU</div>
@@ -498,11 +773,16 @@
                 </div>
                 <ul class="nav-menu">
                     <li><a href="#home">Ana Sayfa</a></li>
-                    <li><a href="#about">Hakkımızda</a></li>
-                    <li><a href="#programs">Eğitim Programlarımız</a></li>
-                    <li><a href="#gallery">Foto Galeri</a></li>
+                    <li><a href="#hakkimizda">Hakkımızda</a></li>
+                    <li><a href="#programlar">Eğitim Programlarımız</a></li>
+                    <li><a href="#galeri">Foto Galeri</a></li>
+                    <li><a href="https://instagram.com/neselikasifler_" target="_blank" title="Instagram" class="nav-instagram"><i class="fab fa-instagram"></i></a></li>
                 </ul>
                 <a href="#register" class="register-btn">Hemen Kayıt Ol</a>
+                <div class="mobile-contact">
+                    <a href="tel:+905514975313" class="phone-icon" title="Ara"><i class="fas fa-phone"></i></a>
+                    <a href="https://instagram.com/neselikasifler_" class="instagram-icon" title="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
                 <button class="mobile-menu-toggle">
                     <i class="fas fa-bars"></i>
                 </button>
@@ -512,10 +792,16 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
+        <div class="hero-slider">            
+        </div>
+    </section>
+
+    <!-- Welcome Overlay -->
+    <section class="welcome-overlay">
         <div class="container">
             <div class="hero-welcome">
                 <h1 class="hero-title">HOŞ GELDİNİZ</h1>
-                <p class="hero-subtitle">Yapabilirsin, hem de her koşulda</p>
+                <p class="hero-subtitle">Çocuğu Keşfet, Alemi Keşfet</p>
             </div>
         </div>
     </section>
@@ -534,7 +820,7 @@
                 <div class="btn-description">Çocuklarımızın eğlenceli anlarına göz atın</div>
             </a>
             <a href="#contact" class="action-btn contact">
-                <i class="fas fa-phone btn-icon"></i>
+                <i class="fas fa-comments btn-icon"></i>
                 <div class="btn-title">İletişim</div>
                 <div class="btn-description">Bizimle iletişime geçin ve sorularınızı sorun</div>
             </a>
@@ -576,23 +862,42 @@
             <div class="footer-content">
                 <div class="footer-section">
                     <h3>İletişim</h3>
-                    <p><i class="fas fa-phone"></i> (0212) 123 45 67</p>
-                    <p><i class="fas fa-envelope"></i> info@neselikasifler.com</p>
-                    <p><i class="fas fa-map-marker-alt"></i> İstanbul, Türkiye</p>
+                    <p><i class="fas fa-phone"></i> +90 551 497 53 13</p>
+                    <p><i class="fas fa-at"></i> info<i class="fas fa-at" style="margin: 0 2px;"></i>neselikasifler.com</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Kuzey Yıldızı Mah. 4081. Cad. 16/C Yenimahalle Ankara</p>
                 </div>
                 <div class="footer-section">
                     <h3>Çalışma Saatleri</h3>
                     <p>Pazartesi - Cuma: 07:30 - 18:00</p>
-                    <p>Cumartesi: 08:00 - 14:00</p>
+                    <p>Cumartesi: Kapalı</p>
                     <p>Pazar: Kapalı</p>
                 </div>
                 <div class="footer-section">
-                    <h3>Bizi Takip Edin</h3>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    <h3>Hızlı Linkler</h3>
+                    <div class="footer-links">
+                        <a href="hakkimizda.html">Hakkımızda</a>
+                        <a href="programlar.html">Eğitim Programları</a>
+                        <a href="galeri.html">Foto Galeri</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Diğer Sayfalar</h3>
+                    <div class="footer-links">
+                        <a href="ev-okulu-ankara.html">Ev Okulu Ankara</a>
+                        <a href="iletisim.html">İletişim</a>
+                        <a href="is-basvurusu.html">İş Başvurusu</a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <div class="social-header">
+                        <h3>Bizi Takip Edin</h3>
+                        <div class="social-icons">
+                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://instagram.com/neselikasifler_" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
+                            <a href="#" title="YouTube"><i class="fab fa-youtube"></i></a>
+                            <a href="https://wa.me/905514975313" title="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -602,7 +907,60 @@
         </div>
     </footer>
 
+    <!-- Weekend Badge -->
+    <div class="weekend-badge" onclick="openModal()">
+        <i class="fas fa-palette"></i> Haftasonu Atölyeleri
+    </div>
+
+    <!-- Enrollment Badge -->
+    <div class="enrollment-badge" onclick="openEnrollmentModal()">
+        <i class="fas fa-graduation-cap"></i> Kayıt Bilgileri
+    </div>
+
+    <!-- Modal -->
+    <div id="weekendModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2><i class="fas fa-palette"></i> Haftasonu Atölyeleri</h2>
+            <p><strong>Cumartesi:</strong> 10:00 - 12:00</p>
+            <p><strong>Pazar:</strong> 14:00 - 16:00</p>
+            <br>
+            <p>🎨 <strong>Sanat ve El Sanatları</strong><br>
+            Çocuklarınız yaratıcılıklarını keşfedebilecekleri özel atölye çalışmaları</p>
+            <br>
+            <p>🔬 <strong>Bilim Deneyleri</strong><br>
+            Eğlenceli deneylerle bilimi öğrenme fırsatı</p>
+            <br>
+            <p>📞 <strong>Kayıt için:</strong> +90 551 497 53 13</p>
+        </div>
+    </div>
+
+    <!-- Enrollment Modal -->
+    <div id="enrollmentModal" class="modal image-modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeEnrollmentModal()">&times;</span>
+            <h2><i class="fas fa-graduation-cap"></i> Kayıt Bilgileri</h2>
+            <!-- Resim buraya eklenebilir -->
+            <!-- <img src="assets/img/kayit-bilgileri.png" alt="Kayıt Bilgileri" class="modal-image"> -->
+            <div style="background: linear-gradient(135deg, var(--primary-yellow), var(--secondary-red)); height: 200px; border-radius: 15px; display: flex; align-items: center; justify-content: center; margin: 20px 0; color: white; font-size: 1.5rem; font-weight: bold;">Resim Alanı</div>
+            <p><strong>2024-2025 Eğitim Yılı Kayıtları Başlamıştır!</strong></p>
+            <br>
+            <p>🎆 <strong>Erken Kayıt Avantajları:</strong><br>
+            • %20 indirim<br>
+            • Ücretsiz malzeme kiti<br>
+            • Öncelik hakkı</p>
+            <br>
+            <p>📞 <strong>İletim:</strong> +90 551 497 53 13<br>
+            📧 <strong>E-mail:</strong> info@neselikasifler.com</p>
+        </div>
+    </div>
+
     <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu-toggle').addEventListener('click', () => {
+            document.querySelector('.nav-menu').classList.toggle('mobile-active');
+        });
+
         // Smooth scrolling for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
@@ -622,6 +980,35 @@
                 header.style.background = 'rgba(255, 255, 255, 0.95)';
             }
         });
+
+        // Modal functions
+        function openModal() {
+            document.getElementById('weekendModal').style.display = 'block';
+        }
+
+        function closeModal() {
+            document.getElementById('weekendModal').style.display = 'none';
+        }
+
+        function openEnrollmentModal() {
+            document.getElementById('enrollmentModal').style.display = 'block';
+        }
+
+        function closeEnrollmentModal() {
+            document.getElementById('enrollmentModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const weekendModal = document.getElementById('weekendModal');
+            const enrollmentModal = document.getElementById('enrollmentModal');
+            if (event.target === weekendModal) {
+                closeModal();
+            }
+            if (event.target === enrollmentModal) {
+                closeEnrollmentModal();
+            }
+        }
     </script>
 </body>
 </html>

@@ -9,7 +9,7 @@ Neşeli Kaşifler Anaokulu için özel tasarlanmış, çocuk dostu ve ebeveyn od
 
 **Başlangıç Tarihi:** 4 Eylül 2025
 
-**Durum:** Faz 1 Tamamlandı - Faz 2'ye geçiş hazır
+**Durum:** Faz 1 Tamamlandı - Header/Footer Standardizasyonu Aşamasında
 
 **Proje Dizini:** C:\Users\Alisettar\source\repos\NeseliKasifler
 
@@ -39,7 +39,14 @@ Neşeli Kaşifler Anaokulu için özel tasarlanmış, çocuk dostu ve ebeveyn od
 - [x] İkon ve görsel entegrasyonu
 - [x] Kullanıcı testleri ve revizyonlar
 
-### **Faz 2: WordPress Temasına Dönüştürme** 📅
+### **Faz 1.5: Header/Footer Standardizasyonu** 📅
+**Süre:** 0.5 gün
+- [ ] Ana sayfa header/footer yapısını diğer sayfalara uygulama
+- [ ] Instagram butonu, mobil menü ve sosyal medya ikonlarını güncelleme
+- [ ] Logo ve animasyonları diğer sayfalara ekleme
+- [ ] Badge'ların tüm sayfalarda çalışmasını sağlama
+
+### **Faz 2: WordPress Temasına Dönüştürme** 📋
 **Süre:** 3-5 gün
 - [ ] WordPress tema yapısı oluşturma
 - [ ] Template dosyaları (header.php, footer.php, index.php)
@@ -107,7 +114,17 @@ Neşeli Kaşifler Anaokulu için özel tasarlanmış, çocuk dostu ve ebeveyn od
 - Menü yapısı güncellendi
 - Font seçimi optimize edildi (Nunito - Türkçe karakter desteği)
 - Hero bölümü hizalama düzeltmeleri
-- Faz 1 tamamlandı
+**6 Eylül 2025:**
+- HTML tasarım bölümü tamamen tamamlandı
+- Ana sayfa (index.html) güncellendi:
+  - PNG logo entegrasyonu (logo.png)
+  - Instagram butonu navigasyon menüsüne eklendi  
+  - WhatsApp sosyal medya ikonları eklendi
+  - Çalışma saatleri güncellendi (Cumartesi-Pazar kapalı)
+  - Mobil görünüm için telefon ve Instagram ikonları
+  - Weekend Badge ve Enrollment Badge modalleri eklendi
+  - Logo animasyonları optimize edildi
+- Sonraki adım: Header/footer standardizasyonu
 
 ---
 
