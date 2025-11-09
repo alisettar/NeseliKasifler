@@ -81,6 +81,17 @@ get_header(); ?>
         </div>
     </section>
 
+    <!-- Map Section -->
+    <section class="container">
+        <div class="map-section">
+            <h2 class="section-title">Konum</h2>
+            <p>Yenimahalle, Ankara merkezinde kolay ulaşılabilir konumumuzda sizleri bekliyoruz.</p>
+            <div class="map-placeholder">
+                <i class="fas fa-map-marked-alt"></i>
+            </div>
+        </div>
+    </section>
+
     <!-- FAQ Section -->
     <section class="container">
         <div class="faq-section">

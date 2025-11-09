@@ -63,5 +63,7 @@ composer.lock
 
 # Archives
 *.zip
+!src/wordpress/neseli-kasifler-theme.zip
+!src/wordpress/neseli-kasifler-theme_backup.zip
 *.tar.gz
 *.rar

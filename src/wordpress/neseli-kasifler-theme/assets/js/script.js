@@ -74,19 +74,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Modal functions
     window.openModal = function() {
-        document.getElementById('weekendModal').style.display = 'block';
+        const modal = document.getElementById('weekendModal');
+        if (modal) modal.style.display = 'block';
     }
 
     window.closeModal = function() {
-        document.getElementById('weekendModal').style.display = 'none';
+        const modal = document.getElementById('weekendModal');
+        if (modal) modal.style.display = 'none';
     }
 
     window.openEnrollmentModal = function() {
-        document.getElementById('enrollmentModal').style.display = 'block';
+        const modal = document.getElementById('enrollmentModal');
+        if (modal) modal.style.display = 'block';
     }
 
     window.closeEnrollmentModal = function() {
-        document.getElementById('enrollmentModal').style.display = 'none';
+        const modal = document.getElementById('enrollmentModal');
+        if (modal) modal.style.display = 'none';
     }
 
     // Close modal when clicking outside
@@ -145,30 +149,35 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('.register-workshop-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const workshop = this.getAttribute('data-workshop');
-                document.getElementById('workshopName').value = workshopNames[workshop];
-                document.getElementById('registrationModal').classList.add('active');
+                const workshopNameInput = document.getElementById('workshopName');
+                const modal = document.getElementById('registrationModal');
+                
+                if (workshopNameInput) workshopNameInput.value = workshopNames[workshop];
+                if (modal) modal.classList.add('active');
             });
         });
 
-        // Modal close functionality
-        window.closeModal = function() {
-            document.getElementById('registrationModal').classList.remove('active');
+        // Modal close functionality for workshop
+        const workshopModal = document.getElementById('registrationModal');
+        if (workshopModal) {
+            workshopModal.addEventListener('click', (e) => {
+                if (e.target.id === 'registrationModal') {
+                    workshopModal.classList.remove('active');
+                }
+            });
         }
 
-        // Close modal on backdrop click
-        document.getElementById('registrationModal').addEventListener('click', (e) => {
-            if (e.target.id === 'registrationModal') {
-                closeModal();
-            }
-        });
-
         // Form submission
-        document.getElementById('workshopForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Kayıt başvurunuz alınmıştır. En kısa sürede sizinle iletişime geçeceğiz.');
-            closeModal();
-            this.reset();
-        });
+        const workshopForm = document.getElementById('workshopForm');
+        if (workshopForm) {
+            workshopForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Kayıt başvurunuz alınmıştır. En kısa sürede sizinle iletişime geçeceğiz.');
+                const modal = document.getElementById('registrationModal');
+                if (modal) modal.classList.remove('active');
+                this.reset();
+            });
+        }
     }
     
     // =============================================
@@ -309,10 +318,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Form submission
-    const submitBtn = document.getElementById('submit-registration');
-    if (submitBtn) {
-        submitBtn.addEventListener('click', (e) => {
+    // Registration form submission
+    const submitRegBtn = document.getElementById('submit-registration');
+    if (submitRegBtn) {
+        submitRegBtn.addEventListener('click', (e) => {
             e.preventDefault();
             
             // Basic form validation
@@ -384,10 +393,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Form submission
-    const submitBtn = document.getElementById('submit-application');
-    if (submitBtn) {
-        submitBtn.addEventListener('click', (e) => {
+    // Job application form submission
+    const submitAppBtn = document.getElementById('submit-application');
+    if (submitAppBtn) {
+        submitAppBtn.addEventListener('click', (e) => {
             e.preventDefault();
             
             // Basic form validation
@@ -424,33 +433,5 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    // Modal functions
-    window.openModal = function() {
-        document.getElementById('weekendModal').style.display = 'block';
-    }
-
-    window.closeModal = function() {
-        document.getElementById('weekendModal').style.display = 'none';
-    }
-
-    window.openEnrollmentModal = function() {
-        document.getElementById('enrollmentModal').style.display = 'block';
-    }
-
-    window.closeEnrollmentModal = function() {
-        document.getElementById('enrollmentModal').style.display = 'none';
-    }
-
-    // Close modal when clicking outside
-    window.onclick = function(event) {
-        const weekendModal = document.getElementById('weekendModal');
-        const enrollmentModal = document.getElementById('enrollmentModal');
-        if (event.target === weekendModal) {
-            closeModal();
-        }
-        if (event.target === enrollmentModal) {
-            closeEnrollmentModal();
-        }
-    }
     
-    });
+});

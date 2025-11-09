@@ -692,8 +692,9 @@ body {
 }
 
 /* Page Header Backgrounds - Specific Colors */
-page-template-page-hakkimizda .page-header,
-.page-id-hakkimizda .page-header {
+.page-template-page-hakkimizda .page-header,
+.page-id-hakkimizda .page-header,
+body.page-template-page-hakkimizda .page-header {
     background: linear-gradient(45deg, var(--purple-accent), var(--blue-accent));
 }
 
@@ -708,13 +709,17 @@ page-template-page-hakkimizda .page-header,
 }
 
 .page-template-page-iletisim .page-header,
-.page-id-iletisim .page-header {
+.page-id-iletisim .page-header,
+body.page-template-page-iletisim .page-header {
     background: linear-gradient(45deg, var(--orange-accent), var(--secondary-red));
 }
 
 .page-template-page-kayit .page-header,
-.page-id-kayit .page-header {
+.page-id-kayit .page-header,
+body.page-template-page-kayit .page-header,
+.registration-header {
     background: linear-gradient(45deg, var(--primary-yellow), var(--orange-accent));
+    color: var(--dark-text);
 }
 
 .page-template-page-is-basvurusu .page-header,
@@ -1418,6 +1423,93 @@ page-template-page-hakkimizda .page-header,
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
+/* Contact Form 7 Styling */
+.contact-form .wpcf7 {
+    margin: 0;
+}
+
+.contact-form .wpcf7-form p {
+    margin-bottom: 2rem;
+}
+
+.contact-form .wpcf7-form label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    color: var(--purple-accent);
+}
+
+.contact-form .wpcf7-form input[type="text"],
+.contact-form .wpcf7-form input[type="email"],
+.contact-form .wpcf7-form input[type="tel"],
+.contact-form .wpcf7-form textarea,
+.contact-form .wpcf7-form select {
+    width: 100%;
+    padding: 1rem;
+    border: 2px solid var(--light-gray);
+    border-radius: 15px;
+    font-family: 'Nunito', sans-serif;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.contact-form .wpcf7-form input[type="text"]:focus,
+.contact-form .wpcf7-form input[type="email"]:focus,
+.contact-form .wpcf7-form input[type="tel"]:focus,
+.contact-form .wpcf7-form textarea:focus,
+.contact-form .wpcf7-form select:focus {
+    outline: none;
+    border-color: var(--primary-yellow);
+    box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.2);
+}
+
+.contact-form .wpcf7-form textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+.contact-form .wpcf7-form input[type="submit"] {
+    background: linear-gradient(45deg, var(--secondary-red), var(--orange-accent));
+    color: white;
+    border: none;
+    padding: 1rem 3rem;
+    border-radius: 25px;
+    font-weight: 700;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 100%;
+}
+
+.contact-form .wpcf7-form input[type="submit"]:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 25px rgba(255, 107, 53, 0.3);
+}
+
+.contact-form .wpcf7-response-output {
+    margin: 2rem 0 0;
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.contact-form .wpcf7-validation-errors {
+    background: #ffebee;
+    border: 2px solid #f44336;
+    color: #c62828;
+}
+
+.contact-form .wpcf7-mail-sent-ok {
+    background: #e8f5e9;
+    border: 2px solid #4caf50;
+    color: #2e7d32;
+}
+
+.contact-form .wpcf7-not-valid-tip {
+    color: var(--secondary-red);
+    font-size: 0.9rem;
+    margin-top: 0.3rem;
+}
+
 .contact-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -1523,6 +1615,15 @@ page-template-page-hakkimizda .page-header,
     border-radius: 25px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
     text-align: center;
+}
+
+.map-section h2 {
+    margin-bottom: 1rem;
+}
+
+.map-section p {
+    margin-bottom: 2rem;
+    color: var(--dark-text);
 }
 
 .map-placeholder {
@@ -1687,7 +1788,8 @@ page-template-page-hakkimizda .page-header,
    27. KAYIT PAGE - Age Groups Selection
    ======================================================================= */
 
-.age-groups {
+.age-groups,
+.age-groups-selection {
     background: var(--white);
     padding: 3rem;
     border-radius: 25px;
