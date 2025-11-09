@@ -53,6 +53,11 @@ body {
     position: sticky;
     top: 0;
     z-index: 1000;
+    transition: all 0.3s ease;
+}
+
+.header.scrolled {
+    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
 }
 
 .navbar {
@@ -80,6 +85,7 @@ body {
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
     text-transform: uppercase;
+    transition: all 0.3s ease;
 }
 
 .logo-sub {
@@ -89,6 +95,7 @@ body {
     font-family: 'Nunito', sans-serif;
     font-weight: 800;
     text-transform: uppercase;
+    transition: all 0.3s ease;
 }
 
 .logo img {
@@ -97,6 +104,7 @@ body {
     margin-right: 10px;
     object-fit: contain;
     animation: logoWiggle 6s ease-in-out infinite;
+    transition: all 0.3s ease;
 }
 
 .logo i {
@@ -2302,10 +2310,17 @@ body.page-template-page-kayit .page-header,
     }
     
     .nav-menu li a {
-        padding: 1rem;
+        padding: 0.6rem 1rem;
         text-align: left;
-        border-radius: 10px;
-        margin: 0.5rem 0;
+        border-radius: 8px;
+        margin: 0.25rem 0;
+        display: block;
+    }
+    
+    .nav-menu li a:hover,
+    .nav-menu li a.active {
+        background: var(--primary-yellow);
+        transform: none;
     }
     
     .nav-menu.mobile-active {

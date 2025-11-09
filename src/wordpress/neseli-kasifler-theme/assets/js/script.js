@@ -2,6 +2,22 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     
+    // Sticky Header on Scroll
+    const header = document.querySelector('.header');
+    let lastScrollTop = 0;
+    
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 50) {
+            header.classList.add('scrolled');
+        } else {
+            header.classList.remove('scrolled');
+        }
+        
+        lastScrollTop = scrollTop;
+    });
+    
     // Hero Slider Functionality
     if (document.querySelector('.hero-slider')) {
         let currentSlide = 0;
