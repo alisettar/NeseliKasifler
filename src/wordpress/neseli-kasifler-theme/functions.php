@@ -20,17 +20,17 @@ add_action( 'after_setup_theme', 'neseli_kasifler_theme_setup' );
 
 // Enqueue styles and scripts
 function neseli_kasifler_scripts() {
-    // Font Awesome - priority yüksek
+    // Font Awesome
     wp_enqueue_style( 'font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css', array(), '6.4.0' );
     
     // Google Fonts
     wp_enqueue_style( 'google-fonts', 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap', array(), null );
     
-    // Ana CSS dosyası - en son yüklenir
-    wp_enqueue_style( 'neseli-kasifler-style', get_template_directory_uri() . '/assets/css/style.css', array('font-awesome', 'google-fonts'), '1.0.0' );
+    // Main CSS - Tüm sayfalar için birleştirilmiş CSS
+    wp_enqueue_style( 'main-style', get_template_directory_uri() . '/assets/css/main-style.css', array('font-awesome', 'google-fonts'), '1.0.1' );
     
-    // JavaScript dosyası
-    wp_enqueue_script( 'neseli-kasifler-script', get_template_directory_uri() . '/assets/js/script.js', array('jquery'), '1.0.0', true );
+    // JavaScript dosyası (jQuery dependency yok - vanilla JS kullanıyor)
+    wp_enqueue_script( 'neseli-kasifler-script', get_template_directory_uri() . '/assets/js/script.js', array(), '1.0.1', true );
 }
 add_action( 'wp_enqueue_scripts', 'neseli_kasifler_scripts' );
 
