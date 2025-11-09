@@ -832,36 +832,44 @@ body.page-template-page-kayit .page-header,
     box-shadow: 0 15px 30px rgba(0,0,0,0.15);
 }
 
-.team-member:nth-child(1) {
+.team-member:nth-child(5n+1) {
     background: linear-gradient(135deg, #FFE5E5, #FFF);
     border-color: var(--secondary-red);
 }
-.team-member:nth-child(1):hover {
+.team-member:nth-child(5n+1):hover {
     background: linear-gradient(135deg, #FFD0D0, #FFF);
 }
 
-.team-member:nth-child(2) {
+.team-member:nth-child(5n+2) {
     background: linear-gradient(135deg, #E5F3FF, #FFF);
     border-color: var(--blue-accent);
 }
-.team-member:nth-child(2):hover {
+.team-member:nth-child(5n+2):hover {
     background: linear-gradient(135deg, #CCE7FF, #FFF);
 }
 
-.team-member:nth-child(3) {
+.team-member:nth-child(5n+3) {
     background: linear-gradient(135deg, #F0E5FF, #FFF);
     border-color: var(--purple-accent);
 }
-.team-member:nth-child(3):hover {
+.team-member:nth-child(5n+3):hover {
     background: linear-gradient(135deg, #E6CCFF, #FFF);
 }
 
-.team-member:nth-child(4) {
+.team-member:nth-child(5n+4) {
     background: linear-gradient(135deg, #E5FFEB, #FFF);
     border-color: var(--green-accent);
 }
-.team-member:nth-child(4):hover {
+.team-member:nth-child(5n+4):hover {
     background: linear-gradient(135deg, #CCFFD6, #FFF);
+}
+
+.team-member:nth-child(5n+5) {
+    background: linear-gradient(135deg, #FFF5E5, #FFF);
+    border-color: var(--orange-accent);
+}
+.team-member:nth-child(5n+5):hover {
+    background: linear-gradient(135deg, #FFE8CC, #FFF);
 }
 
 .team-avatar {
@@ -877,20 +885,24 @@ body.page-template-page-kayit .page-header,
     box-shadow: 0 4px 15px rgba(0,0,0,0.2);
 }
 
-.team-member:nth-child(1) .team-avatar {
+.team-member:nth-child(5n+1) .team-avatar {
     background: linear-gradient(45deg, var(--secondary-red), #E74C3C);
 }
 
-.team-member:nth-child(2) .team-avatar {
+.team-member:nth-child(5n+2) .team-avatar {
     background: linear-gradient(45deg, var(--blue-accent), #3498DB);
 }
 
-.team-member:nth-child(3) .team-avatar {
+.team-member:nth-child(5n+3) .team-avatar {
     background: linear-gradient(45deg, var(--purple-accent), #8E44AD);
 }
 
-.team-member:nth-child(4) .team-avatar {
+.team-member:nth-child(5n+4) .team-avatar {
     background: linear-gradient(45deg, var(--green-accent), #27AE60);
+}
+
+.team-member:nth-child(5n+5) .team-avatar {
+    background: linear-gradient(45deg, var(--orange-accent), #F39C12);
 }
 
 .team-name {
