@@ -9,8 +9,9 @@ get_header(); ?>
     <!-- Page Header -->
     <section class="page-header programs-header">
         <div class="container">
-            <h1 class="page-title">EĞİTİM PROGRAMLARIMIZ</h1>
+            <h1 class="page-title">Okul Öncesi Eğitim Programlarımız</h1>
             <p class="page-subtitle">Her yaş grubuna özel tasarlanmış keşif dolu programlar</p>
+            <?php neseli_kasifler_breadcrumb(); ?>
         </div>
     </section>
 
@@ -25,10 +26,10 @@ get_header(); ?>
                 <div class="age-range">2-3 Yaş</div>
                 <p>Sosyalleşmenin ilk adımları, temel beceriler ve sevgi dolu ortamda güven duygusunun gelişimi.</p>
                 <ul style="text-align: left; margin-top: 1rem;">
-                    <li>• Tuvalet eğitimi desteği</li>
-                    <li>• Temel motor becerileri</li>
-                    <li>• Sosyal etkileşim</li>
-                    <li>• Oyun temelli öğrenme</li>
+                    <li>Tuvalet eğitimi desteği</li>
+                    <li>Temel motor becerileri</li>
+                    <li>Sosyal etkileşim</li>
+                    <li>Oyun temelli öğrenme</li>
                 </ul>
             </div>
             <div class="age-group-card" data-age="3-4">
@@ -39,10 +40,10 @@ get_header(); ?>
                 <div class="age-range">3-4 Yaş</div>
                 <p>Yaratıcılık ve hayal gücünün doruk noktası. Sanat, müzik ve keşif etkinlikleriyle dolu günler.</p>
                 <ul style="text-align: left; margin-top: 1rem;">
-                    <li>• Sanat ve el becerisi</li>
-                    <li>• Müzik ve ritim</li>
-                    <li>• Fen ve doğa keşfi</li>
-                    <li>• Drama ve hikaye</li>
+                    <li>Sanat ve el becerisi</li>
+                    <li>Müzik ve ritim</li>
+                    <li>Fen ve doğa keşfi</li>
+                    <li>Drama ve hikaye</li>
                 </ul>
             </div>
             <div class="age-group-card" data-age="4-6">
@@ -53,10 +54,10 @@ get_header(); ?>
                 <div class="age-range">4-6 Yaş</div>
                 <p>Okula hazırlık dönemi. Akademik beceriler, problem çözme ve bağımsızlık kazanma odaklı program.</p>
                 <ul style="text-align: left; margin-top: 1rem;">
-                    <li>• Okuma yazma hazırlığı</li>
-                    <li>• Matematik kavramları</li>
-                    <li>• Bilimsel düşünme</li>
-                    <li>• Liderlik becerileri</li>
+                    <li>Okuma yazma hazırlığı</li>
+                    <li>Matematik kavramları</li>
+                    <li>Bilimsel düşünme</li>
+                    <li>Liderlik becerileri</li>
                 </ul>
             </div>
         </div>
@@ -174,8 +175,8 @@ get_header(); ?>
             
             <!-- Age Group Tabs -->
             <div class="schedule-tabs">
-                <button class="schedule-tab active" data-age="3">3 Yaş Programı</button>
-                <button class="schedule-tab" data-age="5">5 Yaş Programı</button>
+                <button class="schedule-tab active" data-age="3">2-3 Yaş Programı</button>
+                <button class="schedule-tab" data-age="5">4-6 Yaş Programı</button>
             </div>
             
             <!-- 3 Age Schedule -->
@@ -187,6 +188,7 @@ get_header(); ?>
                             <strong>Okula Geliş ve Selamlaşma</strong>
                             <ul>
                                 <li>Çember zamanı</li>
+                                <li>Kahvaltı</li>
                                 <li>Serbest oyun</li>
                                 <li>Boyama çalışmaları</li>
                                 <li>Oyun hamuru</li>
@@ -271,6 +273,7 @@ get_header(); ?>
                             <strong>Okula Geliş ve Selamlaşma</strong>
                             <ul>
                                 <li>Çember zamanı</li>
+                                <li>Kahvaltı</li>
                                 <li>Serbest oyun</li>
                                 <li>Boyama çalışmaları</li>
                                 <li>Oyun hamuru</li>
@@ -303,41 +306,37 @@ get_header(); ?>
                         </div>
                     </div>
                     <div class="schedule-item">
-                        <div class="schedule-time">12:30 - 13:15</div>
+                        <div class="schedule-time">12:30 - 13:30</div>
                         <div class="schedule-activity">
-                            <strong>Öğle Yemeği</strong>
+                            <strong>Öğle Yemeği ve Temizlik</strong>
                             <ul>
-                                <li>Temizlik ve toplanma</li>
+                                <li>Yemek sonrası özbakım becerileri</li>
+                                <li>Masa düzeni ve temizlik</li>
                             </ul>
                         </div>
                     </div>
                     <div class="schedule-item">
-                        <div class="schedule-time">13:15 - 14:00</div>
+                        <div class="schedule-time">13:30 - 16:30</div>
                         <div class="schedule-activity">
-                            <strong>Dinlenme ve Uyku</strong>
-                        </div>
-                    </div>
-                    <div class="schedule-item">
-                        <div class="schedule-time">14:00 - 16:00</div>
-                        <div class="schedule-activity">
-                            <strong>İleri Düzey Etkinlikler</strong>
+                            <strong>İleri Düzey Etkinlikler ve Atölyeler</strong>
                             <ul>
-                                <li>Deney, test etme</li>
-                                <li>Sayılarla eşleştirme</li>
-                                <li>Robotik kodlama</li>
-                                <li>Drama</li>
-                                <li>Bitki yetiştirme</li>
-                                <li>Satranç</li>
+                                <li>Deney ve test etme (Bilim saati)</li>
+                                <li>Sayılarla eşleştirme ve problem çözme</li>
+                                <li>Robotik kodlama ve algoritma</li>
+                                <li>Yaratıcı Drama çalışmaları</li>
+                                <li>Bitki yetiştirme ve bahçe bakımı</li>
+                                <li>Satranç ve akıl oyunları</li>
+                                <li>Orman sınıfı keşifleri</li>
                             </ul>
                         </div>
                     </div>
                     <div class="schedule-item">
-                        <div class="schedule-time">16:00 - 17:00</div>
+                        <div class="schedule-time">16:30 - 17:00</div>
                         <div class="schedule-activity">
-                            <strong>İkindi Kahvaltısı</strong>
+                            <strong>İkindi Kahvaltısı ve Eve Dönüş</strong>
                             <ul>
-                                <li>Okuldan ayrılış</li>
-                                <li>Vedalaşma</li>
+                                <li>Gün sonu değerlendirme çemberi</li>
+                                <li>Okuldan ayrılış ve vedalaşma</li>
                             </ul>
                         </div>
                     </div>

@@ -3,13 +3,12 @@
 <head>
     <meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><?php wp_title('|', true, 'right'); ?><?php bloginfo('name'); ?></title>
+    <!-- Title tag: wp_title kullanılmıyor, title-tag theme support aktif (functions.php) -->
     
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='25' fill='%23FFD700'/%3E%3Cpath d='M50 10 L50 20 M50 80 L50 90 M10 50 L20 50 M80 50 L90 50 M21.7 21.7 L28.3 28.3 M71.7 71.7 L78.3 78.3 M21.7 78.3 L28.3 71.7 M71.7 28.3 L78.3 21.7' stroke='%23FFD700' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
     <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ccircle cx='50' cy='50' r='25' fill='%23FFD700'/%3E%3Cpath d='M50 10 L50 20 M50 80 L50 90 M10 50 L20 50 M80 50 L90 50 M21.7 21.7 L28.3 28.3 M71.7 71.7 L78.3 78.3 M21.7 78.3 L28.3 71.7 M71.7 28.3 L78.3 21.7' stroke='%23FFD700' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
     
-    <!-- Font Awesome CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" />
+    <!-- Font Awesome: functions.php üzerinden wp_enqueue_style ile yükleniyor, burada tekrar yüklemeye gerek yok -->
     
     <?php wp_head(); ?>
 </head>
@@ -53,11 +52,15 @@
                 ) );
                 ?>
                 
-                <a href="<?php echo esc_url( get_permalink( get_page_by_path( 'kayit' ) ) ); ?>" class="register-btn">Hemen Kayıt Ol</a>
+                <?php 
+                $kayit_page = get_page_by_path('kayit');
+                $kayit_url = $kayit_page ? get_permalink($kayit_page) : home_url('/kayit/');
+                ?>
+                <a href="<?php echo esc_url($kayit_url); ?>" class="register-btn">Hemen Kayıt Ol</a>
                 
                 <div class="mobile-contact">
                     <a href="tel:+905514975313" class="phone-icon" title="Ara"><i class="fas fa-phone"></i></a>
-                    <a href="https://instagram.com/neselikasifler_" class="instagram-icon" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://instagram.com/neselikasifler" class="instagram-icon" title="Instagram" target="_blank"><i class="fab fa-instagram"></i></a>
                 </div>
                 
                 <button class="mobile-menu-toggle">

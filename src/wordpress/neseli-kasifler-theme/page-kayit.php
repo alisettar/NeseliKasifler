@@ -9,8 +9,24 @@ get_header(); ?>
     <!-- Page Header -->
     <section class="page-header registration-header">
         <div class="container">
-            <h1 class="page-title">HEMEN KAYIT OL</h1>
+            <h1 class="page-title">Anaokulu Kayıt Başvurusu</h1>
             <p class="page-subtitle">Çocuğunuz için en doğru tercih</p>
+            <?php neseli_kasifler_breadcrumb(); ?>
+        </div>
+    </section>
+
+    <!-- Neden Neşeli Kaşifler -->
+    <?php
+    $programlar_page = get_page_by_path('egitim-programlari');
+    $hakkimizda_page = get_page_by_path('hakkimizda');
+    ?>
+    <section class="container">
+        <div class="content-section">
+            <h2 class="section-title">Neden Neşeli Kaşifler?</h2>
+            <div class="section-content" style="max-width: 900px; margin: 0 auto;">
+                <p>2020 yılından bu yana Ankara Yenimahalle'de hizmet veren okulumuzda <a href="<?php echo esc_url($programlar_page ? get_permalink($programlar_page) : home_url('/egitim-programlari/')); ?>">Multibem Erken Çocukluk Eğitim Modeli</a> uygulanmaktadır. Orman sınıfı, kodlama, İngilizce-Arapça eğitimi, değerler eğitimi ve sanat atölyeleri ile çocuklarınız çok yönlü gelişir. <a href="<?php echo esc_url($hakkimizda_page ? get_permalink($hakkimizda_page) : home_url('/hakkimizda/')); ?>">Deneyimli öğretmen kadromuz</a>, dil ve konuşma terapisti ile psikolog desteğimiz, çocuğunuzun her alanda desteklenmesini sağlar.</p>
+                <p>2026-2027 eğitim yılı kayıtları devam etmektedir. %10 kardeş indirimi uygulanmaktadır.</p>
+            </div>
         </div>
     </section>
 
@@ -32,7 +48,7 @@ get_header(); ?>
                 <div class="step-item">
                     <div class="step-number">3</div>
                     <h3 class="step-title">Okul Ziyareti</h3>
-                    <p>Okulumuzı gezin ve tanışın</p>
+                    <p>Okulumuzu gezin ve tanışın</p>
                 </div>
                 <div class="step-item">
                     <div class="step-number">4</div>
@@ -135,15 +151,6 @@ get_header(); ?>
                 </div>
             </div>
 
-            <div class="age-group-item" data-group="kucuk">
-                <input type="radio" name="age-group" value="kucuk" id="kucuk">
-                <div class="age-icon">🧒</div>
-                <div class="age-info">
-                    <h4>Küçük Kaşifler (3-4 Yaş)</h4>
-                    <p>Dil gelişimi, motor beceriler ve yaratıcılık etkinlikleri</p>
-                </div>
-            </div>
-
             <div class="age-group-item" data-group="buyuk">
                 <input type="radio" name="age-group" value="buyuk" id="buyuk">
                 <div class="age-icon">👦</div>
@@ -161,7 +168,7 @@ get_header(); ?>
             <div class="info-card">
                 <i class="fas fa-file-alt"></i>
                 <h3>Gerekli Belgeler</h3>
-                <p>Nüfus cüzdanı, aşı karnesi, 4 adet vesikalık fotoğraf ve veli kimlik fotokopileri</p>
+                <p>Nüfus cüzdanı, 4 adet vesikalık fotoğraf ve veli kimlik fotokopileri</p>
             </div>
             <div class="info-card">
                 <i class="fas fa-calendar-check"></i>

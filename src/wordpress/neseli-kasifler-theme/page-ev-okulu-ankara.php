@@ -9,8 +9,9 @@ get_header(); ?>
     <!-- Page Header -->
     <section class="page-header">
         <div class="container">
-            <h1 class="page-title">EV OKULU ANKARA</h1>
+            <h1 class="page-title">Ev Okulu Ankara — Evde Eğitim Desteği</h1>
             <p class="page-subtitle">Evde eğitim destekleyen topluluk ve atölyeler</p>
+            <?php neseli_kasifler_breadcrumb(); ?>
         </div>
     </section>
 
@@ -29,6 +30,12 @@ get_header(); ?>
                 <p>Ev okulu eğitimi, çocukların doğal meraklarını koruyarak, kendi ilgi alanlarını keşfetmelerini ve derinlemesine öğrenmelerini sağlar. Ailemizde yer alan çocuklar, bireysel gelişimlerine odaklanırken aynı zamanda toplumsal değerleri de öğrenirler.</p>
                 
                 <p>Ankara'da ev okulu yapan aileleri bir araya getirerek güçlü bir destek ağı oluşturuyoruz. Deneyimli ailelerden yeni başlayan ailelere bilgi aktarımı, kaynak paylaşımı ve moral desteği sağlıyoruz.</p>
+
+                <p style="margin-top: 1.5rem;">
+                    <a href="https://www.instagram.com/evokulu_ankara?igsh=cXZnaWthNmZiYWt4&utm_source=qr" target="_blank" style="display: inline-flex; align-items: center; gap: 8px; color: #E4405F; font-weight: 700; text-decoration: none; font-size: 1.1rem;">
+                        <i class="fab fa-instagram" style="font-size: 1.5rem;"></i> Ev Okulu Ankara Instagram
+                    </a>
+                </p>
             </div>
         </div>
     </section>
@@ -70,7 +77,7 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- Workshops -->
+    <!-- Workshops - Simplified -->
     <section class="container">
         <div class="content-section">
             <h2 class="section-title">Atölyelerimiz</h2>
@@ -78,151 +85,22 @@ get_header(); ?>
                 <div class="workshop-card">
                     <div class="workshop-header">
                         <div class="workshop-icon">
-                            <i class="fas fa-palette"></i>
+                            <i class="fas fa-heart"></i>
                         </div>
-                        <h3 class="workshop-title">Sanat ve Yaratıcılık Atölyesi</h3>
-                        <div class="workshop-age">5-12 Yaş</div>
+                        <h3 class="workshop-title">Aylık Düzenli Değerler Eğitimi Atölyeleri</h3>
                     </div>
                     <div class="workshop-description">
-                        <p>Çocukların yaratıcı potansiyellerini keşfetmeleri için tasarlanmış sanat atölyesi. Farklı malzemeler ve tekniklerle sanat eserleri üretirler.</p>
+                        <p>Çocuklarımıza ahlaki değerler, karakter gelişimi ve güçlü kişilik inşa etmeyi amaçlayan aylık düzenli atölye çalışmalarımız ile birlikte büyüyoruz.</p>
                     </div>
                     <div class="workshop-details">
                         <ul>
-                            <li><i class="fas fa-calendar"></i> Her Salı 10:00-12:00</li>
-                            <li><i class="fas fa-clock"></i> 2 saat süre</li>
-                            <li><i class="fas fa-money-bill"></i> 200 TL/ay</li>
-                            <li><i class="fas fa-user"></i> Max 8 çocuk</li>
+                            <li><i class="fas fa-phone"></i> Bilgi ve İletişim: <a href="tel:+905415560210" style="color: inherit; font-weight: 700;">0541 556 02 10</a></li>
+                            <li><i class="fab fa-whatsapp"></i> <a href="https://wa.me/905415560210" target="_blank" style="color: #25D366; font-weight: 700;">WhatsApp ile yazın</a></li>
                         </ul>
-                        <button class="register-workshop-btn" data-workshop="sanat">Atölyeye Kayıt Ol</button>
-                    </div>
-                </div>
-
-                <div class="workshop-card">
-                    <div class="workshop-header">
-                        <div class="workshop-icon">
-                            <i class="fas fa-leaf"></i>
-                        </div>
-                        <h3 class="workshop-title">Doğa ve Bilim Atölyesi</h3>
-                        <div class="workshop-age">6-14 Yaş</div>
-                    </div>
-                    <div class="workshop-description">
-                        <p>Doğa gezileri, deneyler ve gözlemlerle bilimsel düşünce geliştirme. Çocuklar doğayı keşfederken öğrenirler.</p>
-                    </div>
-                    <div class="workshop-details">
-                        <ul>
-                            <li><i class="fas fa-calendar"></i> Her Perşembe 14:00-16:00</li>
-                            <li><i class="fas fa-clock"></i> 2 saat süre</li>
-                            <li><i class="fas fa-money-bill"></i> 250 TL/ay</li>
-                            <li><i class="fas fa-user"></i> Max 6 çocuk</li>
-                        </ul>
-                        <button class="register-workshop-btn" data-workshop="doga">Atölyeye Kayıt Ol</button>
-                    </div>
-                </div>
-
-                <div class="workshop-card">
-                    <div class="workshop-header">
-                        <div class="workshop-icon">
-                            <i class="fas fa-book-open"></i>
-                        </div>
-                        <h3 class="workshop-title">Hikaye ve Drama Atölyesi</h3>
-                        <div class="workshop-age">4-10 Yaş</div>
-                    </div>
-                    <div class="workshop-description">
-                        <p>Hikaye anlatma, drama ve yaratıcı yazma etkinlikleri. Çocukların dil gelişimi ve özgüven kazanmasını destekler.</p>
-                    </div>
-                    <div class="workshop-details">
-                        <ul>
-                            <li><i class="fas fa-calendar"></i> Her Cuma 10:00-11:30</li>
-                            <li><i class="fas fa-clock"></i> 1.5 saat süre</li>
-                            <li><i class="fas fa-money-bill"></i> 180 TL/ay</li>
-                            <li><i class="fas fa-user"></i> Max 10 çocuk</li>
-                        </ul>
-                        <button class="register-workshop-btn" data-workshop="hikaye">Atölyeye Kayıt Ol</button>
-                    </div>
-                </div>
-
-                <div class="workshop-card">
-                    <div class="workshop-header">
-                        <div class="workshop-icon">
-                            <i class="fas fa-gamepad"></i>
-                        </div>
-                        <h3 class="workshop-title">Matematik ve Oyun Atölyesi</h3>
-                        <div class="workshop-age">7-13 Yaş</div>
-                    </div>
-                    <div class="workshop-description">
-                        <p>Oyunlar ve pratik uygulamalarla matematik öğrenme. Çocuklar matematiği eğlenceli bulurken mantıklı düşünme becerileri gelişir.</p>
-                    </div>
-                    <div class="workshop-details">
-                        <ul>
-                            <li><i class="fas fa-calendar"></i> Her Çarşamba 15:00-16:30</li>
-                            <li><i class="fas fa-clock"></i> 1.5 saat süre</li>
-                            <li><i class="fas fa-money-bill"></i> 220 TL/ay</li>
-                            <li><i class="fas fa-user"></i> Max 8 çocuk</li>
-                        </ul>
-                        <button class="register-workshop-btn" data-workshop="matematik">Atölyeye Kayıt Ol</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
-    <!-- Registration Modal -->
-    <div class="modal" id="registrationModal">
-        <div class="modal-content">
-            <button class="modal-close" onclick="closeModal()">&times;</button>
-            <h2 style="color: var(--purple-accent); margin-bottom: 1.5rem;">Atölye Kayıt Formu</h2>
-            <form id="workshopForm">
-                <div class="form-group">
-                    <label for="workshopName">Seçilen Atölye:</label>
-                    <input type="text" id="workshopName" name="workshopName" readonly>
-                </div>
-                
-                <div class="form-group">
-                    <label for="parentName">Veli Adı Soyadı:</label>
-                    <input type="text" id="parentName" name="parentName" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="childName">Çocuk Adı Soyadı:</label>
-                    <input type="text" id="childName" name="childName" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="childAge">Çocuk Yaşı:</label>
-                    <select id="childAge" name="childAge" required>
-                        <option value="">Seçiniz</option>
-                        <option value="4">4 yaş</option>
-                        <option value="5">5 yaş</option>
-                        <option value="6">6 yaş</option>
-                        <option value="7">7 yaş</option>
-                        <option value="8">8 yaş</option>
-                        <option value="9">9 yaş</option>
-                        <option value="10">10 yaş</option>
-                        <option value="11">11 yaş</option>
-                        <option value="12">12 yaş</option>
-                        <option value="13">13 yaş</option>
-                        <option value="14">14 yaş</option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label for="phone">Telefon:</label>
-                    <input type="tel" id="phone" name="phone" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="email">E-posta:</label>
-                    <input type="email" id="email" name="email" required>
-                </div>
-                
-                <div class="form-group">
-                    <label for="message">Ek Notlar (İsteğe bağlı):</label>
-                    <textarea id="message" name="message" rows="4" placeholder="Çocuğunuzla ilgili özel durumlar, beklentileriniz vb."></textarea>
-                </div>
-                
-                <button type="submit" class="submit-btn">Kayıt Başvurusunu Gönder</button>
-            </form>
-        </div>
-    </div>
 
 <?php get_footer(); ?>

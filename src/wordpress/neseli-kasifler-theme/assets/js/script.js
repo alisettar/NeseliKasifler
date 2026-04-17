@@ -91,33 +91,47 @@ document.addEventListener('DOMContentLoaded', function() {
     // Modal functions
     window.openModal = function() {
         const modal = document.getElementById('weekendModal');
-        if (modal) modal.style.display = 'block';
+        if (modal) { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
     }
 
     window.closeModal = function() {
         const modal = document.getElementById('weekendModal');
-        if (modal) modal.style.display = 'none';
+        if (modal) { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }
     }
 
     window.openEnrollmentModal = function() {
         const modal = document.getElementById('enrollmentModal');
-        if (modal) modal.style.display = 'block';
+        if (modal) { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
     }
 
     window.closeEnrollmentModal = function() {
         const modal = document.getElementById('enrollmentModal');
-        if (modal) modal.style.display = 'none';
+        if (modal) { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }
+    }
+
+    window.openOyunModal = function() {
+        const modal = document.getElementById('oyunModal');
+        if (modal) { modal.style.display = 'flex'; document.body.style.overflow = 'hidden'; }
+    }
+
+    window.closeOyunModal = function() {
+        const modal = document.getElementById('oyunModal');
+        if (modal) { modal.style.display = 'none'; document.body.style.overflow = 'auto'; }
     }
 
     // Close modal when clicking outside
     window.onclick = function(event) {
         const weekendModal = document.getElementById('weekendModal');
         const enrollmentModal = document.getElementById('enrollmentModal');
+        const oyunModal = document.getElementById('oyunModal');
         if (event.target === weekendModal) {
             closeModal();
         }
         if (event.target === enrollmentModal) {
             closeEnrollmentModal();
+        }
+        if (event.target === oyunModal) {
+            closeOyunModal();
         }
     }
     
@@ -220,37 +234,33 @@ document.addEventListener('DOMContentLoaded', function() {
     // Schedule tabs functionality
     document.querySelectorAll('.schedule-tab').forEach(tab => {
         tab.addEventListener('click', function() {
-            // Remove active class from all tabs and contents
+            const age = this.getAttribute('data-age');
+            
+            // Remove active from all tabs and contents
             document.querySelectorAll('.schedule-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.schedule-content').forEach(c => c.classList.remove('active'));
             
-            // Add active class to clicked tab
+            // Activate clicked tab and corresponding content
             this.classList.add('active');
-            
-            // Show corresponding content
-            const ageGroup = this.getAttribute('data-age');
-            const targetContent = document.getElementById('schedule-' + ageGroup);
-            if (targetContent) {
-                targetContent.classList.add('active');
-            }
+            const content = document.getElementById('schedule-' + age);
+            if (content) content.classList.add('active');
         });
     });
-    
+
     // =============================================
-    // FOTO GALERİ PAGE FUNCTIONALITY
+    // GALERİ PAGE - Filtreleme + Lightbox
     // =============================================
-    
-    // Gallery filtering
+
     const filterBtns = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.gallery-item');
 
+    // Galeri filtreleme
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const filter = btn.getAttribute('data-filter');
             
-            // Toggle functionality
+            // Toggle: aktif filtreye tekrar tıklanırsa "Tümü"ne dön
             if (btn.classList.contains('active') && filter !== 'all') {
-                // If clicking active filter (not 'all'), return to 'all'
                 filterBtns.forEach(b => b.classList.remove('active'));
                 const allBtn = document.querySelector('[data-filter="all"]');
                 if (allBtn) allBtn.classList.add('active');
@@ -259,7 +269,6 @@ document.addEventListener('DOMContentLoaded', function() {
                     item.style.display = 'block';
                 });
             } else {
-                // Normal filtering
                 filterBtns.forEach(b => b.classList.remove('active'));
                 btn.classList.add('active');
 
@@ -274,36 +283,101 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Lightbox functionality
+    // Lightbox - Fotoğraf ve Video destekli
     galleryItems.forEach(item => {
         item.addEventListener('click', () => {
-            const title = item.getAttribute('data-title');
-            const desc = item.getAttribute('data-desc');
-            const emoji = item.querySelector('.gallery-image span');
-            
-            if (title && desc && emoji) {
-                const lightboxTitle = document.getElementById('lightbox-title');
-                const lightboxDesc = document.getElementById('lightbox-description');
-                const lightboxImage = document.getElementById('lightbox-image');
-                const lightbox = document.getElementById('lightbox');
-                
-                if (lightboxTitle) lightboxTitle.textContent = title;
-                if (lightboxDesc) lightboxDesc.textContent = desc;
-                if (lightboxImage) lightboxImage.textContent = emoji.textContent;
-                if (lightbox) lightbox.classList.add('active');
+            const title     = item.getAttribute('data-title');
+            const desc      = item.getAttribute('data-desc');
+            const mediaType = item.getAttribute('data-type');
+            const imageUrl  = item.getAttribute('data-image');
+            const videoUrl  = item.getAttribute('data-video');
+            const videoLink = item.getAttribute('data-video-link');
+            const orientation = item.getAttribute('data-orientation');
+
+            const lightbox      = document.getElementById('lightbox');
+            const lightboxMedia = document.getElementById('lightbox-media');
+            const lightboxTitle = document.getElementById('lightbox-title');
+            const lightboxDesc  = document.getElementById('lightbox-description');
+
+            if (!lightbox || !lightboxMedia) return;
+
+            // Medya alanını temizle
+            lightboxMedia.innerHTML = '';
+            lightboxMedia.classList.remove('has-video', 'has-video-vertical', 'has-image', 'is-portrait');
+
+            if (mediaType === 'video' && videoUrl) {
+                // YouTube embed
+                const iframe = document.createElement('iframe');
+                iframe.src = videoUrl + '?autoplay=1&rel=0';
+                iframe.setAttribute('frameborder', '0');
+                iframe.setAttribute('allowfullscreen', 'true');
+                iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+                iframe.className = 'lightbox-video';
+                lightboxMedia.appendChild(iframe);
+                lightboxMedia.classList.remove('has-image');
+                // Dikey (Shorts) vs yatay video
+                if (orientation === 'vertical') {
+                    lightboxMedia.classList.add('has-video-vertical');
+                    lightboxMedia.classList.remove('has-video');
+                } else {
+                    lightboxMedia.classList.add('has-video');
+                    lightboxMedia.classList.remove('has-video-vertical');
+                }
+            } else if (mediaType === 'video' && videoLink) {
+                // YouTube olmayan video linki - yeni sekmede aç butonu
+                const linkDiv = document.createElement('div');
+                linkDiv.className = 'lightbox-video-link';
+                linkDiv.innerHTML = '<a href="' + videoLink + '" target="_blank" rel="noopener noreferrer">' +
+                    '<i class="fas fa-external-link-alt"></i> Videoyu Aç</a>';
+                lightboxMedia.appendChild(linkDiv);
+                lightboxMedia.classList.remove('has-video', 'has-image');
+            } else if (imageUrl) {
+                // Fotoğraf - yüklendikten sonra yön algıla
+                const img = document.createElement('img');
+                img.alt = title || '';
+                img.className = 'lightbox-img';
+                img.onload = function() {
+                    if (img.naturalHeight > img.naturalWidth) {
+                        lightboxMedia.classList.add('is-portrait');
+                    } else {
+                        lightboxMedia.classList.remove('is-portrait');
+                    }
+                };
+                img.src = imageUrl;
+                lightboxMedia.appendChild(img);
+                lightboxMedia.classList.add('has-image');
+                lightboxMedia.classList.remove('has-video', 'has-video-vertical');
+            } else {
+                // Fallback - görsel yoksa placeholder
+                lightboxMedia.innerHTML = '<div class="lightbox-placeholder"><i class="fas fa-image"></i></div>';
+                lightboxMedia.classList.remove('has-video', 'has-image');
             }
+
+            if (lightboxTitle) lightboxTitle.textContent = title || '';
+            if (lightboxDesc) lightboxDesc.textContent = desc || '';
+
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
         });
     });
 
-    // Lightbox close functionality
+    // Lightbox kapat
     window.closeLightbox = function() {
         const lightbox = document.getElementById('lightbox');
+        const lightboxMedia = document.getElementById('lightbox-media');
         if (lightbox) {
             lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            // Video oynatmayı durdur
+            if (lightboxMedia) {
+                const iframe = lightboxMedia.querySelector('iframe');
+                if (iframe) iframe.src = '';
+                lightboxMedia.innerHTML = '';
+            }
         }
     }
 
-    // Close lightbox on backdrop click
+    // Lightbox arkaplanına tıklayınca kapat
     const lightbox = document.getElementById('lightbox');
     if (lightbox) {
         lightbox.addEventListener('click', (e) => {
@@ -312,6 +386,16 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // ESC tuşuyla lightbox kapat
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            const lb = document.getElementById('lightbox');
+            if (lb && lb.classList.contains('active')) {
+                closeLightbox();
+            }
+        }
+    });
     
     // =============================================
     // KAYIT PAGE FUNCTIONALITY  
@@ -449,5 +533,59 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
+
+    // Ön Kayıt modalı - sadece anasayfada ve oturum başına 1 kez
+    if (document.body.classList.contains('home') && !sessionStorage.getItem('enrollmentShown')) {
+        openEnrollmentModal();
+        sessionStorage.setItem('enrollmentShown', 'true');
+    }
     
+});
+
+/* Summer School Modal */
+function openSummerModal() {
+    var modal = document.getElementById('summerModal');
+    if (modal) {
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeSummerModal() {
+    var modal = document.getElementById('summerModal');
+    if (modal) {
+        modal.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }
+}
+
+/* Close summer/oyun modal on outside click */
+window.addEventListener('click', function(event) {
+    var summerModal = document.getElementById('summerModal');
+    var oyunModal = document.getElementById('oyunModal');
+    if (event.target === summerModal) {
+        closeSummerModal();
+    }
+    if (event.target === oyunModal) {
+        closeOyunModal();
+    }
+});
+
+/* CF7 Radio kartları — seçili durumu yönetir */
+document.addEventListener('change', function(e) {
+    if (e.target.type === 'radio' && e.target.closest('.age-radio-group')) {
+        var items = e.target.closest('.wpcf7-radio').querySelectorAll('.wpcf7-list-item');
+        items.forEach(function(item) { item.classList.remove('selected'); });
+        var parentItem = e.target.closest('.wpcf7-list-item');
+        if (parentItem) parentItem.classList.add('selected');
+    }
+});
+
+/* Sayfa yüklendiğinde varsayılan seçili radio'yu işaretle */
+document.addEventListener('DOMContentLoaded', function() {
+    var checkedRadio = document.querySelector('.age-radio-group input[type="radio"]:checked');
+    if (checkedRadio) {
+        var parentItem = checkedRadio.closest('.wpcf7-list-item');
+        if (parentItem) parentItem.classList.add('selected');
+    }
 });

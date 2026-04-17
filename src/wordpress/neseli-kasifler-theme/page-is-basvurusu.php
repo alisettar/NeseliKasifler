@@ -9,15 +9,17 @@ get_header(); ?>
     <!-- Page Header -->
     <section class="page-header job-application-header">
         <div class="container">
-            <h1 class="page-title">İŞ BAŞVURUSU</h1>
+            <h1 class="page-title">Anaokulu İş Başvurusu</h1>
             <p class="page-subtitle">Takımımıza katılın, çocukların geleceğini şekillendirin</p>
+            <?php neseli_kasifler_breadcrumb(); ?>
         </div>
     </section>
 
-    <!-- Job Positions -->
+    <!-- Positions Section -->
     <section class="container">
         <div class="positions-section">
             <h2 class="section-title">Açık Pozisyonlar</h2>
+            <p style="text-align: center; max-width: 800px; margin: 0 auto 2rem; font-size: 1.05rem; line-height: 1.7;">Neşeli Kaşifler Anaokulu'nda çocuk sevgisi ile dolu, deneyimli bir ekiple birlikte çalışma fırsatı sizi bekliyor. Multibem eğitim modeli çerçevesinde çocukların keşif yolculuğuna rehberlik eden öğretmenlerimiz, yıl boyunca süren çevrimiçi eğitimlerle desteklenmektedir. Sürekli mesleki gelişim imkanı sunan, sevgi dolu bir çalışma ortamına katılmak isterseniz aşağıdaki açık pozisyonlara başvurabilirsiniz.</p>
             <div class="job-positions">
                 <div class="job-card" data-position="ogretmen">
                     <div class="job-icon">👩‍🏫</div>

@@ -1,0 +1,109 @@
+/*
+ * Sticky Action Bar - Override Styles
+ */
+
+.sticky-action-bar {
+    padding: 0;
+    margin-top: 0;
+}
+
+.sticky-bar-inner {
+    max-width: 100%;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    background: url('../img/bg.svg') repeat-x bottom center;
+    background-size: auto 100%;
+    background-color: transparent;
+    padding: 30px 40px 12px 40px;
+    position: relative;
+    overflow: visible;
+    align-items: flex-end;
+}
+
+/* Child - ayakları bar'ın dibinde, gövdesi dışarı taşıyor */
+.sticky-bar-child {
+    margin-bottom: -12px; /* padding-bottom'ı nötrle, tam dibe yapışsın */
+}
+
+.sticky-bar-child img {
+    max-height: 180px;
+    width: auto;
+    display: block;
+    margin-top: -184px;
+}
+
+/* Plane - dışarı taşsın, biraz büyük */
+.sticky-bar-plane {
+    margin-bottom: 0;
+}
+
+.sticky-bar-plane img {
+    max-height: 90px;
+    width: auto;
+    display: block;
+    margin-top: -90px;
+    margin-bottom: 83px;
+    animation: planeFloat 3s ease-in-out infinite;
+}
+
+.sticky-bar-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 8px;
+    gap: 6px;
+    min-width: 0;
+}
+
+/* Başlık */
+.sticky-bar-title {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #5D4037;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+/* Butonlar ortalı */
+.sticky-bar-buttons {
+    justify-content: center;
+    align-items: center;
+}
+
+/* Buton renkleri - krem teması */
+.sticky-btn-kayit { background: #E65100; }
+.sticky-btn-yaz { background: #F4511E; }
+.sticky-btn-oyun { background: #8D6E63; }
+.sticky-btn-atolye { background: #FF8F00; }
+.sticky-btn-tel { background: #5D4037; }
+.sticky-btn-wa { background: #25D366; }
+
+/* İkon-only butonlar (yazısız) */
+.sticky-btn-icon {
+    padding: 8px 12px;
+    border-radius: 50%;
+    min-width: 38px;
+    min-height: 38px;
+    justify-content: center;
+}
+
+/* Tablet */
+@media (max-width: 992px) {
+    .sticky-bar-inner {
+        padding: 25px 20px 10px 20px;
+    }
+    .sticky-bar-child img {
+        max-height: 140px;
+        margin-top: -144px;
+    }
+    .sticky-bar-child {
+        margin-bottom: -10px;
+    }
+    .sticky-bar-plane img {
+        max-height: 65px;
+        margin-top: -35px;
+    }
+}

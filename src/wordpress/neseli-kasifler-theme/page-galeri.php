@@ -1,7 +1,7 @@
 <?php
 /**
  * Template Name: Foto Galeri
- * Template for Photo Gallery page
+ * Template for Photo Gallery page - Dynamic from CPT
  */
 
 get_header(); ?>
@@ -9,195 +9,171 @@ get_header(); ?>
     <!-- Page Header -->
     <section class="page-header gallery-header">
         <div class="container">
-            <h1 class="page-title">FOTO GALERİ</h1>
+            <h1 class="page-title">Neşeli Kaşifler Foto Galeri</h1>
             <p class="page-subtitle">Çocuklarımızın neşeli anları</p>
+            <?php neseli_kasifler_breadcrumb(); ?>
         </div>
     </section>
 
-    <!-- Gallery Filters -->
+    <!-- Gallery Intro -->
+    <section class="container">
+        <div class="content-section" style="text-align: center;">
+            <p style="font-size: 1.05rem; line-height: 1.7; max-width: 800px; margin: 0 auto;">Neşeli Kaşifler Anaokulu'nda çocuklarımızın etkinlik, oyun, sanat çalışması, bahçe aktivitesi ve orman sınıfı keşiflerinden kareler. Fotoğraf ve videolarımızı kategorilere göre filtreleyerek inceleyebilirsiniz.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Filters (Taxonomy'den dinamik) -->
     <section class="container">
         <div class="gallery-filters">
             <button class="filter-btn active" data-filter="all">Tümü</button>
-            <button class="filter-btn" data-filter="etkinlik">Etkinlikler</button>
-            <button class="filter-btn" data-filter="oyun">Oyun Zamanı</button>
-            <button class="filter-btn" data-filter="sanat">Sanat</button>
-            <button class="filter-btn" data-filter="yemek">Yemek Zamanı</button>
-            <button class="filter-btn" data-filter="bahce">Bahçe</button>
-            <button class="filter-btn" data-filter="binicilik">Binicilik</button>
-            <button class="filter-btn" data-filter="orman">Orman Sınıfı</button>
+            <?php
+            $galeri_terms = get_terms( array(
+                'taxonomy'   => 'galeri_kategori',
+                'hide_empty' => true,
+                'orderby'    => 'name',
+            ) );
+            if ( ! is_wp_error( $galeri_terms ) && ! empty( $galeri_terms ) ) :
+                foreach ( $galeri_terms as $term ) : ?>
+                    <button class="filter-btn" data-filter="<?php echo esc_attr( $term->slug ); ?>">
+                        <?php echo esc_html( $term->name ); ?>
+                    </button>
+                <?php endforeach;
+            endif;
+            ?>
         </div>
     </section>
 
-    <!-- Gallery Grid -->
+    <!-- Gallery Grid (CPT'den dinamik) -->
     <section class="container">
         <div class="gallery-grid">
-            <div class="gallery-item" data-category="etkinlik" data-title="Bilim Deneyleri" data-desc="Küçük bilim insanlarımız keşfediyor">
-                <div class="gallery-image">
-                    <span>🔬</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Etkinlik</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">Bilim Deneyleri</h3>
-                    <p class="gallery-description">Küçük bilim insanlarımız keşfediyor</p>
-                </div>
-            </div>
+            <?php
+            $galeri_query = new WP_Query( array(
+                'post_type'      => 'galeri',
+                'posts_per_page' => -1,
+                'post_status'    => 'publish',
+                'meta_key'       => '_galeri_sira',
+                'orderby'        => array(
+                    'meta_value_num' => 'ASC',
+                    'date'           => 'DESC',
+                ),
+            ) );
 
-            <div class="gallery-item" data-category="sanat" data-title="Boyama Atölyesi" data-desc="Rengarenk sanat eserleri">
-                <div class="gallery-image">
-                    <span>🎨</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Sanat</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">Boyama Atölyesi</h3>
-                    <p class="gallery-description">Rengarenk sanat eserleri</p>
-                </div>
-            </div>
+            if ( $galeri_query->have_posts() ) :
+                while ( $galeri_query->have_posts() ) : $galeri_query->the_post();
 
-            <div class="gallery-item" data-category="oyun" data-title="Blok Oyunları" data-desc="Yaratıcılık ve problem çözme">
-                <div class="gallery-image">
-                    <span>🧩</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Oyun</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">Blok Oyunları</h3>
-                    <p class="gallery-description">Yaratıcılık ve problem çözme</p>
-                </div>
-            </div>
+                    // Meta veriler
+                    $media_type = get_post_meta( get_the_ID(), '_galeri_media_type', true ) ?: 'foto';
+                    $video_url  = get_post_meta( get_the_ID(), '_galeri_video_url', true );
+                    $desc       = get_the_excerpt();
 
-            <div class="gallery-item" data-category="yemek" data-title="Kahvaltı Saati" data-desc="Sağlıklı beslenme alışkanlıkları">
-                <div class="gallery-image">
-                    <span>🍎</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Yemek</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">Kahvaltı Saati</h3>
-                    <p class="gallery-description">Sağlıklı beslenme alışkanlıkları</p>
-                </div>
-            </div>
+                    // Kategori (ilk term'in slug'ı)
+                    $terms = get_the_terms( get_the_ID(), 'galeri_kategori' );
+                    $cat_slug = '';
+                    $cat_name = '';
+                    if ( $terms && ! is_wp_error( $terms ) ) {
+                        $cat_slug = $terms[0]->slug;
+                        $cat_name = $terms[0]->name;
+                    }
 
-            <div class="gallery-item" data-category="bahce" data-title="Bahçe Aktiviteleri" data-desc="Doğayla iç içe oyunlar">
-                <div class="gallery-image">
-                    <span>🌳</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Bahçe</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">Bahçe Aktiviteleri</h3>
-                    <p class="gallery-description">Doğayla iç içe oyunlar</p>
-                </div>
-            </div>
+                    // Görsel URL
+                    $thumb_url = '';
+                    $full_url  = '';
+                    if ( has_post_thumbnail() ) {
+                        $thumb_url = get_the_post_thumbnail_url( get_the_ID(), 'medium_large' );
+                        $full_url  = get_the_post_thumbnail_url( get_the_ID(), 'full' );
+                    }
 
-            <div class="gallery-item" data-category="etkinlik" data-title="Müzik Saati" data-desc="Ritim ve melodi keşfi">
-                <div class="gallery-image">
-                    <span>🎵</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Etkinlik</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">Müzik Saati</h3>
-                    <p class="gallery-description">Ritim ve melodi keşfi</p>
-                </div>
-            </div>
+                    // Video ise YouTube thumbnail kullan (öne çıkan görsel yoksa)
+                    $youtube_embed = '';
+                    if ( $media_type === 'video' && $video_url ) {
+                        $youtube_embed = neseli_kasifler_get_youtube_embed_url( $video_url );
+                        if ( ! $thumb_url ) {
+                            $yt_thumb = neseli_kasifler_get_youtube_thumb( $video_url );
+                            if ( $yt_thumb ) {
+                                $thumb_url = $yt_thumb;
+                                $full_url  = $yt_thumb;
+                            }
+                        }
+                    }
 
-            <div class="gallery-item" data-category="sanat" data-title="El İşleri" data-desc="Motor beceriler gelişimi">
-                <div class="gallery-image">
-                    <span>✂️</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Sanat</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">El İşleri</h3>
-                    <p class="gallery-description">Motor beceriler gelişimi</p>
-                </div>
-            </div>
+                    // Data attributes
+                    $data_attrs = sprintf(
+                        'data-category="%s" data-title="%s" data-desc="%s" data-type="%s"',
+                        esc_attr( $cat_slug ),
+                        esc_attr( get_the_title() ),
+                        esc_attr( $desc ),
+                        esc_attr( $media_type )
+                    );
+                    if ( $media_type === 'foto' && $full_url ) {
+                        $data_attrs .= sprintf( ' data-image="%s"', esc_url( $full_url ) );
+                    }
+                    if ( $media_type === 'video' && $youtube_embed ) {
+                        $data_attrs .= sprintf( ' data-video="%s"', esc_url( $youtube_embed ) );
+                        // Orientation: meta'dan veya URL'den otomatik algıla
+                        $vid_orientation = get_post_meta( get_the_ID(), '_galeri_video_orientation', true ) ?: 'auto';
+                        if ( $vid_orientation === 'vertical' ) {
+                            $data_attrs .= ' data-orientation="vertical"';
+                        } elseif ( $vid_orientation === 'horizontal' ) {
+                            $data_attrs .= ' data-orientation="horizontal"';
+                        } elseif ( strpos( $video_url, '/shorts/' ) !== false ) {
+                            $data_attrs .= ' data-orientation="vertical"';
+                        }
+                    }
+                    if ( $media_type === 'video' && $video_url && ! $youtube_embed ) {
+                        $data_attrs .= sprintf( ' data-video-link="%s"', esc_url( $video_url ) );
+                    }
+            ?>
+                <div class="gallery-item" <?php echo $data_attrs; ?>>
+                    <div class="gallery-image">
+                        <?php if ( $thumb_url ) : ?>
+                            <img src="<?php echo esc_url( $thumb_url ); ?>" alt="<?php echo esc_attr( get_the_title() ); ?>" loading="lazy">
+                        <?php else : ?>
+                            <span class="gallery-placeholder"><i class="fas fa-image"></i></span>
+                        <?php endif; ?>
 
-            <div class="gallery-item" data-category="oyun" data-title="Dramatik Oyun" data-desc="Hayal gücü ve rol yapma">
-                <div class="gallery-image">
-                    <span>🎭</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Oyun</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">Dramatik Oyun</h3>
-                    <p class="gallery-description">Hayal gücü ve rol yapma</p>
-                </div>
-            </div>
+                        <?php if ( $media_type === 'video' ) : ?>
+                            <div class="play-icon"><i class="fas fa-play"></i></div>
+                        <?php else : ?>
+                            <div class="play-icon"><i class="fas fa-search-plus"></i></div>
+                        <?php endif; ?>
+                    </div>
 
-            <div class="gallery-item" data-category="etkinlik" data-title="Kitap Okuma" data-desc="Dil gelişimi ve hayal gücü">
-                <div class="gallery-image">
-                    <span>📚</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Etkinlik</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">Kitap Okuma</h3>
-                    <p class="gallery-description">Dil gelişimi ve hayal gücü</p>
-                </div>
-            </div>
+                    <?php if ( $cat_name ) : ?>
+                        <div class="gallery-category">
+                            <?php if ( $media_type === 'video' ) : ?>
+                                <i class="fas fa-video"></i> 
+                            <?php endif; ?>
+                            <?php echo esc_html( $cat_name ); ?>
+                        </div>
+                    <?php endif; ?>
 
-            <div class="gallery-item" data-category="binicilik" data-title="At Binicilik Dersleri" data-desc="Güvenli ortamda at binme deneyimi">
-                <div class="gallery-image">
-                    <span>🐎</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
+                    <div class="gallery-info">
+                        <h3 class="gallery-title"><?php the_title(); ?></h3>
+                        <?php if ( $desc ) : ?>
+                            <p class="gallery-description"><?php echo esc_html( $desc ); ?></p>
+                        <?php endif; ?>
+                    </div>
                 </div>
-                <div class="gallery-category">Binicilik</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">At Binicilik Dersleri</h3>
-                    <p class="gallery-description">Güvenli ortamda at binme deneyimi</p>
+            <?php
+                endwhile;
+                wp_reset_postdata();
+            else :
+            ?>
+                <!-- Henüz galeri öğesi eklenmemişse bilgilendirme -->
+                <div class="gallery-empty">
+                    <i class="fas fa-camera" style="font-size: 3rem; color: #FFD700; margin-bottom: 1rem;"></i>
+                    <h3>Galeri Hazırlanıyor</h3>
+                    <p>Çok yakında çocuklarımızın neşeli anlarını burada paylaşacağız!</p>
+                    <?php if ( current_user_can( 'edit_posts' ) ) : ?>
+                        <p style="margin-top: 1rem;">
+                            <a href="<?php echo admin_url( 'post-new.php?post_type=galeri' ); ?>" 
+                               style="background: #FFD700; color: #333; padding: 10px 25px; border-radius: 25px; text-decoration: none; font-weight: 700;">
+                                <i class="fas fa-plus"></i> Galeri Öğesi Ekle
+                            </a>
+                        </p>
+                    <?php endif; ?>
                 </div>
-            </div>
-
-            <div class="gallery-item" data-category="binicilik" data-title="At Bakımı" data-desc="Hayvan sevgisi ve sorumluluk">
-                <div class="gallery-image">
-                    <span>🥕</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Binicilik</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">At Bakımı</h3>
-                    <p class="gallery-description">Hayvan sevgisi ve sorumluluk</p>
-                </div>
-            </div>
-
-            <div class="gallery-item" data-category="orman" data-title="Doğa Yürüyüşü" data-desc="Orman keşif macerası">
-                <div class="gallery-image">
-                    <span>🌲</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Orman Sınıfı</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">Doğa Yürüyüşü</h3>
-                    <p class="gallery-description">Orman keşif macerası</p>
-                </div>
-            </div>
-
-            <div class="gallery-item" data-category="orman" data-title="Böcek Gözlemi" data-desc="Doğal yaşamı tanıma">
-                <div class="gallery-image">
-                    <span>🐛</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Orman Sınıfı</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">Böcek Gözlemi</h3>
-                    <p class="gallery-description">Doğal yaşamı tanıma</p>
-                </div>
-            </div>
-
-            <div class="gallery-item" data-category="orman" data-title="Ağaç Evler" data-desc="Doğada yaratıcı oyunlar">
-                <div class="gallery-image">
-                    <span>🏡</span>
-                    <div class="play-icon"><i class="fas fa-play"></i></div>
-                </div>
-                <div class="gallery-category">Orman Sınıfı</div>
-                <div class="gallery-info">
-                    <h3 class="gallery-title">Ağaç Evler</h3>
-                    <p class="gallery-description">Doğada yaratıcı oyunlar</p>
-                </div>
-            </div>
+            <?php endif; ?>
         </div>
     </section>
 
@@ -225,11 +201,11 @@ get_header(); ?>
         </div>
     </section>
 
-    <!-- Lightbox -->
+    <!-- Lightbox (Fotoğraf + Video destekli) -->
     <div class="lightbox" id="lightbox">
         <div class="lightbox-content">
             <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-            <div class="lightbox-image" id="lightbox-image"></div>
+            <div class="lightbox-media" id="lightbox-media"></div>
             <h3 id="lightbox-title"></h3>
             <p id="lightbox-description"></p>
         </div>
